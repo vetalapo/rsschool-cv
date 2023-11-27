@@ -17,15 +17,19 @@
     </head>
     <body>
         <header>
-            <h1>Vitaly Dushkin</h1>
-            <img src="assets/images/vitaly-dushkin.jpg" alt="Front photo of Vitaly Dushkin">
+            <img src="assets/images/vitaly-dushkin.jpg" title="Hi, I'm Vitaly!" alt="Front photo of Vitaly Dushkin">
+            <div id="core-info">
+                <h1>Vitaly Dushkin</h1>
+                <p>Software Engineer</p>
+            </div>
+            <div class="clear"></div>
         </header>
         <nav>
             <ul>
                 <li><a href="#contacts">Contacts</a></li>
                 <li><a href="#summary">Summary</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#code">Code Examples</a></li>
+                <li><a href="#code">Code</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#education">Education</a></li>
@@ -35,17 +39,17 @@
         <main>
             <section id="contacts">
                 <h2>Contacts</h2>
-                <ul>
+                <ul class="section-content">
                     <li>Phone: <a href="tel:555555555555">+55 555 555 5555</a></li>
                     <li>E-mail: <a href="mailto:john.doe@example.com">john.doe@example.com</a></li>
                     <li>LinkedIn: <a href="https://www.linkedin.com/in/vitaly-dushkin/">Vitaly Dushkin</a></li>
                     <li>GitHub: <a href="https://github.com/vetalapo/">vetalapo</a></li>
                 </ul>
             </section>
-
+            <div class="clear"></div>
             <section id="summary">
                 <h2>Summary</h2>
-                <p>
+                <p class="section-content">
                     Enthusiastic and dedicated software engineer with a passion for crafting clean and efficient code.
                     Eager to contribute to dynamic projects and grow within a collaborative team environment.
                     Possesses a strong foundation in programming principles, a quick learner,
@@ -54,10 +58,10 @@
                     I believe in the continuous pursuit of knowledge and am ready to contribute to innovative solutions.
                 </p>
             </section>
-            
+            <div class="clear"></div>
             <section id="skills">
                 <h2>Skills</h2>
-                <ul>
+                <ul class="section-content">
                     <li>Programming Languages: Python, JavaScript</li>
                     <li>Web Development: HTML, CSS, React.js</li>
                     <li>Database: MongoDB, PostgreSQL</li>
@@ -66,16 +70,16 @@
                     <li>Methodologies: Agile</li>
                 </ul>
             </section>
-            
+            <div class="clear"></div>
             <section id="code">
                 <h2>Code Example</h2>
-                <p>
+                <p class="section-content">
                     From <a href="https://www.codewars.com/kata/54ba84be607a92aa900000f1" target="_blank">CODEWARS</a> (JavaScript):<br>
                     Implement a function that determines whether a string that contains only letters is an isogram.<br>
                     An isogram is a word that has no repeating letters, consecutive or non-consecutive.<br>
                     Note: Assume the empty string is an isogram. Ignore letter case.
                 </p>
-                <pre>
+                <pre class="section-content">
                     <code>
                         function isIsogram(str) {
                             str = str.toLowerCase();
@@ -96,10 +100,10 @@
                     </code>
                 </pre>
             </section>
-            
+            <div class="clear"></div>
             <section id="projects">
                 <h2>Project Examples</h2>
-                <ol>
+                <ol class="section-content">
                     <li>
                         <strong>Weather App (JavaScript):</strong> <a href="https://github.com/hamza-mirza/react-weather-app" target="_blank">github.com/vetalapo/weather-app</a>
                         <ul>
@@ -114,10 +118,10 @@
                     </li>
                 </ol>
             </section>
-            
+            <div class="clear"></div>
             <section id="experience">
                 <h2>Experience</h2>
-                <figure>
+                <figure class="section-content">
                     <h3>Freelance Web Developer | Upwork</h3>
                     <p><em>March 2023 - Present</em></p>
                     <ul>
@@ -126,7 +130,7 @@
                         <li>Developed responsive and user-friendly interfaces using HTML, CSS, and React.js.</li>
                     </ul>
                 </figure>
-                <figure>
+                <figure class="section-content">
                     <h3>Coding Challenges | HackerRank, LeetCode</a></h3>
                     <p><em>September 2022 - Present</em></p>
                     <ul>
@@ -135,16 +139,16 @@
                     </ul>
                 </figure>
             </section>
-            
+            <div class="clear"></div>
             <section id="education">
                 <h2>Education</h2>
-                <figure>
+                <figure class="section-content">
                     <p>
                         <strong>Bachelor of Science in Computer Science | University XYZ</strong>
                         <em>2022</em>
                     </p>
                 </figure>
-                <figure>
+                <figure class="section-content">
                     <p><strong>Online Courses:</strong></p>
                     <ul>
                         <li>Web Development Bootcamp | Udemy</li>
@@ -152,16 +156,17 @@
                     </ul>
                 </figure>
             </section>
-            
+            <div class="clear"></div>
             <section id="languages">
                 <h2>Languages</h2>
-                <p>
+                <p class="section-content">
                     Proficient in English, with regular practice through online communication,
                     documentation, and participation in English-speaking coding communities.
                     Completed a language exchange program,
                     engaging in daily conversations for six months to enhance spoken and written English skills.
                 </p>
             </section>
+            <div class="clear"></div>
         </main>
         <footer>
             <a href="https://github.com/vetalapo" target="_blank">Visit my GitHub!</a>
