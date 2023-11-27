@@ -1,0 +1,23 @@
+{
+  "name": "rsschool-cv",
+  "version": "0.0.2",
+  "description": "Fake CV for the Rolling Scopes School's task: CV. HTML, CSS & Git Basics",
+  "private": "true",
+  "scripts": {
+    "start": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vetalapo/rsschool-cv.git"
+  },
+  "author": "Vitaly Dushkin",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/vetalapo/rsschool-cv/issues"
+  },
+  "homepage": "https://github.com/vetalapo/rsschool-cv#readme",
+  "devDependencies": {
+    "lite-server": "2.6.1"
+  }
+}
