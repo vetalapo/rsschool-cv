@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Fake CV for the Rolling Scopes School's task: CV. HTML, CSS & Git Basics">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="stylesheet" href="assets/css/styles.css" media="print" onload="this.media='all'">
+        <title>CV. HTML, CSS & Git Basics</title>
+    </head>
+    <body>
+        <header>
+            <img src="assets/images/vitaly-dushkin.jpg" title="Hi, I'm Vitaly!" alt="Front photo of Vitaly Dushkin">
+            <div id="core-info">
+                <h1>Vitaly Dushkin</h1>
+                <p>Software Engineer</p>
+            </div>
+            <div class="clear"></div>
+        </header>
+        <nav>
+            <ul class="brackets">
+                <li><a href="#contacts">Contacts</a></li>
+                <li><a href="#summary">Summary</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#code">Code</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#languages">Languages</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section id="contacts">
+                <h2>Contacts</h2>
+                <ul class="section-content">
+                    <li><strong>Phone:</strong> <a href="tel:555555555555">+55 555 555 5555</a></li>
+                    <li><strong>E-mail:</strong> <a href="mailto:john.doe@example.com">john.doe@example.com</a></li>
+                    <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/vitaly-dushkin/">Vitaly Dushkin</a></li>
+                    <li><strong>GitHub:</strong> <a href="https://github.com/vetalapo/">vetalapo</a></li>
+                </ul>
+            </section>
+            <div class="clear"></div>
+            <section id="summary">
+                <h2>Summary</h2>
+                <p class="section-content">
+                    Enthusiastic and dedicated software engineer with a passion for crafting clean and efficient code.
+                    Eager to contribute to dynamic projects and grow within a collaborative team environment.
+                    Possesses a strong foundation in programming principles, a quick learner,
+                    and committed to staying abreast of emerging technologies.
+                    As a software engineer,
+                    I believe in the continuous pursuit of knowledge and am ready to contribute to innovative solutions.
+                </p>
+            </section>
+            <div class="clear"></div>
+            <section id="skills">
+                <h2>Skills</h2>
+                <ul class="section-content">
+                    <li><strong>Programming Languages:</strong> Python, JavaScript</li>
+                    <li><strong>Web Development:</strong> HTML, CSS, React.js</li>
+                    <li><strong>Database:</strong> MongoDB, PostgreSQL</li>
+                    <li><strong>Version Control:</strong> Git</li>
+                    <li><strong>Tools:</strong> VS Code, JIRA</li>
+                    <li><strong>Methodologies:</strong> Agile</li>
+                </ul>
+            </section>
+            <div class="clear"></div>
+            <section id="code">
+                <h2>Code Example</h2>
+                <p class="section-content">
+                    From <a href="https://www.codewars.com/kata/54ba84be607a92aa900000f1" target="_blank">CODEWARS</a> (JavaScript):<br>
+                    <em>
+                        Implement a function that determines whether a string that contains only letters is an isogram.<br>
+                        An isogram is a word that has no repeating letters, consecutive or non-consecutive.<br>
+                        Note: Assume the empty string is an isogram. Ignore letter case.
+                    </em>
+                </p>
+                <pre class="section-content">
+                    <code>
+function isIsogram(str) {
+    str = str.toLowerCase();
+    let set = new Set();
+
+    for (let i = 0; i &lt; str.length; i++) {
+        let char = str[i];
+        
+        if (set.has(char)) {    
+            return false;
+        }
+        
+        set.add(char);
+    }
+    
+    return true;
+}
+                    </code>
+                </pre>
+            </section>
+            <div class="clear"></div>
+            <section id="projects">
+                <h2>Project Examples</h2>
+                <ol class="section-content">
+                    <li>
+                        <strong>Weather App (JavaScript):</strong> <a href="https://github.com/hamza-mirza/react-weather-app" target="_blank">github.com/vetalapo/weather-app</a>
+                        <ul class="disc-style">
+                            <li>Developed a simple weather application using React.js and integrated it with a weather API to display real-time weather information.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Task Manager (Python):</strong> <a href="https://github.com/darxtrix/ptop" target="_blank">github.com/vetalapo/task-manager</a>
+                        <ul class="disc-style">
+                            <li>Created a command-line task manager application in Python, showcasing CPU monitoring and processes handling.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </section>
+            <div class="clear"></div>
+            <section id="experience">
+                <h2>Experience</h2>
+                <figure class="section-content">
+                    <h3>Freelance Web Developer | Upwork</h3>
+                    <p><em>March 2023 - Present</em></p>
+                    <ul>
+                        <li>Executed multiple freelance projects, including website development and bug fixing.</li>
+                        <li>Collaborated with clients to understand project requirements and deliver tailored solutions.</li>
+                        <li>Developed responsive and user-friendly interfaces using HTML, CSS, and React.js.</li>
+                    </ul>
+                </figure>
+                <figure class="section-content">
+                    <h3>Coding Challenges | HackerRank, LeetCode</h3>
+                    <p><em>September 2022 - Present</em></p>
+                    <ul>
+                        <li>Regularly participated in coding challenges to enhance problem-solving skills and algorithmic thinking.</li>
+                        <li>Achieved a top 5% ranking in algorithmic problem-solving competitions.</li>
+                    </ul>
+                </figure>
+            </section>
+            <div class="clear"></div>
+            <section id="education">
+                <h2>Education</h2>
+                <figure class="section-content">
+                    <p>
+                        <strong>Bachelor of Science in Computer Science | University XYZ</strong>
+                        <em>2022</em>
+                    </p>
+                </figure>
+                <figure class="section-content">
+                    <p><strong>Online Courses:</strong></p>
+                    <ul>
+                        <li>Web Development Bootcamp | Udemy</li>
+                        <li>Python for Beginners | Codecademy</li>
+                    </ul>
+                </figure>
+            </section>
+            <div class="clear"></div>
+            <section id="languages">
+                <h2>Languages</h2>
+                <p class="section-content">
+                    Proficient in English, with regular practice through online communication,
+                    documentation, and participation in English-speaking coding communities.
+                    Completed a language exchange program,
+                    engaging in daily conversations for six months to enhance spoken and written English skills.
+                </p>
+            </section>
+            <div class="clear"></div>
+        </main>
+        <footer>
+            <a href="https://app.rs.school/" target="_blank">
+                <img src="assets/images/rsschool-logo.png" title="The Rolling Scopes" alt="The Rolling Scopes Logo">
+            </a>
+            <p>&copy; <time id="copyright-date" datetime="2023-11-27">November, 2023</time></p>
+            <a class="spin" href="https://github.com/vetalapo" target="_blank">
+                <img src="assets/images/gh-logo.png" title="Visit my GitHub!" alt="GitHub Logo">
+            </a>
+        </footer>
+        <script src="assets/js/index.js" defer></script>
+    </body>
+</html>
