@@ -25,7 +25,7 @@
             <div class="clear"></div>
         </header>
         <nav>
-            <ul>
+            <ul class="brackets">
                 <li><a href="#contacts">Contacts</a></li>
                 <li><a href="#summary">Summary</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -40,10 +40,10 @@
             <section id="contacts">
                 <h2>Contacts</h2>
                 <ul class="section-content">
-                    <li>Phone: <a href="tel:555555555555">+55 555 555 5555</a></li>
-                    <li>E-mail: <a href="mailto:john.doe@example.com">john.doe@example.com</a></li>
-                    <li>LinkedIn: <a href="https://www.linkedin.com/in/vitaly-dushkin/">Vitaly Dushkin</a></li>
-                    <li>GitHub: <a href="https://github.com/vetalapo/">vetalapo</a></li>
+                    <li><strong>Phone:</strong> <a href="tel:555555555555">+55 555 555 5555</a></li>
+                    <li><strong>E-mail:</strong> <a href="mailto:john.doe@example.com">john.doe@example.com</a></li>
+                    <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/vitaly-dushkin/">Vitaly Dushkin</a></li>
+                    <li><strong>GitHub:</strong> <a href="https://github.com/vetalapo/">vetalapo</a></li>
                 </ul>
             </section>
             <div class="clear"></div>
@@ -62,12 +62,12 @@
             <section id="skills">
                 <h2>Skills</h2>
                 <ul class="section-content">
-                    <li>Programming Languages: Python, JavaScript</li>
-                    <li>Web Development: HTML, CSS, React.js</li>
-                    <li>Database: MongoDB, PostgreSQL</li>
-                    <li>Version Control: Git</li>
-                    <li>Tools: VS Code, JIRA</li>
-                    <li>Methodologies: Agile</li>
+                    <li><strong>Programming Languages:</strong> Python, JavaScript</li>
+                    <li><strong>Web Development:</strong> HTML, CSS, React.js</li>
+                    <li><strong>Database:</strong> MongoDB, PostgreSQL</li>
+                    <li><strong>Version Control:</strong> Git</li>
+                    <li><strong>Tools:</strong> VS Code, JIRA</li>
+                    <li><strong>Methodologies:</strong> Agile</li>
                 </ul>
             </section>
             <div class="clear"></div>
@@ -75,28 +75,30 @@
                 <h2>Code Example</h2>
                 <p class="section-content">
                     From <a href="https://www.codewars.com/kata/54ba84be607a92aa900000f1" target="_blank">CODEWARS</a> (JavaScript):<br>
-                    Implement a function that determines whether a string that contains only letters is an isogram.<br>
-                    An isogram is a word that has no repeating letters, consecutive or non-consecutive.<br>
-                    Note: Assume the empty string is an isogram. Ignore letter case.
+                    <em>
+                        Implement a function that determines whether a string that contains only letters is an isogram.<br>
+                        An isogram is a word that has no repeating letters, consecutive or non-consecutive.<br>
+                        Note: Assume the empty string is an isogram. Ignore letter case.
+                    </em>
                 </p>
                 <pre class="section-content">
                     <code>
-                        function isIsogram(str) {
-                            str = str.toLowerCase();
-                            let set = new Set();
-                    
-                            for (let i = 0; i &lt; str.length; i++) {
-                                let char = str[i];
-                                
-                                if (set.has(char)) {    
-                                    return false;
-                                }
-                                
-                                set.add(char);
-                            }
-                            
-                            return true;
-                        }
+function isIsogram(str) {
+    str = str.toLowerCase();
+    let set = new Set();
+
+    for (let i = 0; i &lt; str.length; i++) {
+        let char = str[i];
+        
+        if (set.has(char)) {    
+            return false;
+        }
+        
+        set.add(char);
+    }
+    
+    return true;
+}
                     </code>
                 </pre>
             </section>
@@ -106,13 +108,13 @@
                 <ol class="section-content">
                     <li>
                         <strong>Weather App (JavaScript):</strong> <a href="https://github.com/hamza-mirza/react-weather-app" target="_blank">github.com/vetalapo/weather-app</a>
-                        <ul>
+                        <ul class="disc-style">
                             <li>Developed a simple weather application using React.js and integrated it with a weather API to display real-time weather information.</li>
                         </ul>
                     </li>
                     <li>
                         <strong>Task Manager (Python):</strong> <a href="https://github.com/darxtrix/ptop" target="_blank">github.com/vetalapo/task-manager</a>
-                        <ul>
+                        <ul class="disc-style">
                             <li>Created a command-line task manager application in Python, showcasing CPU monitoring and processes handling.</li>
                         </ul>
                     </li>
@@ -131,7 +133,7 @@
                     </ul>
                 </figure>
                 <figure class="section-content">
-                    <h3>Coding Challenges | HackerRank, LeetCode</a></h3>
+                    <h3>Coding Challenges | HackerRank, LeetCode</h3>
                     <p><em>September 2022 - Present</em></p>
                     <ul>
                         <li>Regularly participated in coding challenges to enhance problem-solving skills and algorithmic thinking.</li>
@@ -169,12 +171,14 @@
             <div class="clear"></div>
         </main>
         <footer>
-            <a href="https://github.com/vetalapo" target="_blank">Visit my GitHub!</a>
-            <p>&copy; <time id="copyright-date" datetime="2023-11-27">November, 2023</time></p>
             <a href="https://app.rs.school/" target="_blank">
-                <img src="assets/images/rsschool-logo.png" alt="RS School Logo">
+                <img src="assets/images/rsschool-logo.png" title="The Rolling Scopes" alt="The Rolling Scopes Logo">
+            </a>
+            <p>&copy; <time id="copyright-date" datetime="2023-11-27">November, 2023</time></p>
+            <a class="spin" href="https://github.com/vetalapo" target="_blank">
+                <img src="assets/images/gh-logo.png" title="Visit my GitHub!" alt="GitHub Logo">
             </a>
         </footer>
-        <script type="text/javascript" src="assets/js/index.js" defer></script>
+        <script src="assets/js/index.js" defer></script>
     </body>
 </html>
