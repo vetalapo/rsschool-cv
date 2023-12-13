@@ -1,0 +1,204 @@
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.clear {
+    clear: both;
+}
+
+.disc-style {
+    list-style-type: disc;
+}
+
+html {
+    background-image: radial-gradient(circle, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+}
+
+body {
+    max-width: 54rem;
+    background: #fff;
+    color: #222;
+    margin: 30px auto;
+    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-feature-settings: "calt", "liga", "hist", "onum", "pnum";
+    font-size: 1rem;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+body:hover, header img:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+header {
+    padding: 25px 35px;
+    border-bottom: 2px solid #cf8a05;
+    background: #f3f3f3;
+}
+
+header h1 {
+    font-size: 2.5em;
+    font-family: "Gudea", Helvetica, arial, sans-serif;
+}
+
+header p {
+    font-size: 1.5em;
+    font-family: "Gudea", Helvetica, arial, sans-serif;
+}
+
+header img {
+    width: 30%;
+    height: auto;
+    float: left;
+    margin-right: 30px;
+    border-radius: 50%;
+}
+
+/* Navigation */
+nav
+{
+    background: #1f3d3a;
+    height: 45px;
+    border-bottom: 2px solid #cf8a05;
+}
+
+nav ul
+{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    text-align: center;
+    list-style-type: none;
+    padding: 12px 0 0 0;
+}
+
+nav ul a
+{
+    color: #FFF;
+    text-decoration: none;
+    font-size: 15px;
+    margin: 0px 10px;
+    padding: 10px 10px;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
+
+/* Brackets */
+.brackets a:before, .brackets a:after
+{
+    position: absolute;
+    opacity: 0;
+    font-size: 30px;
+    top: 0px;
+    transition: all 0.3s;
+}
+
+.brackets a:before
+{
+    content: '{';
+    left: 0px;
+    transform: translateX(10px);
+}
+
+.brackets a:after
+{
+    content: '}';
+    right: 0px;
+    transform: translateX(-10px);
+}
+
+.brackets a:hover:before, .brackets a:hover:after
+{
+    opacity: 1;
+    transform: translateX(0px);
+}
+
+/* Main info */
+#core-info {
+    float: left;
+}
+
+main {
+    padding: 0 40px;
+}
+
+section {
+    border-top: 1px solid #dedede;
+    padding: 20px 0 0;
+}
+
+section:first-child {
+    border-top: 0;
+}
+
+section:last-child {
+    padding: 20px 0 10px;
+}
+
+section h2 {
+    float: left;
+    font-family: "Gudea", helvetica, arial, sans-serif;
+    font-size: 0.89em;
+    color: #cf8a05;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+section .section-content {
+    float: right;
+    width: 72.5%;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+/* Section fixes */
+figure {
+    margin: 0;
+}
+
+h3, #education p {
+    margin-top: 0;
+}
+
+#summary p, #languages p {
+    text-align: justify;
+}
+
+#contacts ul, #skills ul, #projects ol {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 45px;
+    width: auto;
+    border-top: 2px solid #cf8a05;
+}
+
+footer img {
+    width: 70px;
+    height: auto;
+}
+
+/* Animations */
+.spin:hover {
+    animation-name: spin;
+    animation-duration: 90s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
