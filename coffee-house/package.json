@@ -1,0 +1,22 @@
+{
+  "name": "coffee-house",
+  "version": "0.0.1",
+  "description": "Coffee House, RSSchool demo project",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolling-scopes-school/vetalapo-JSFEEN2023Q4.git"
+  },
+  "author": "Vitaly Dushkin",
+  "license": "SEE LICENSE IN <LICENSE> FILE",
+  "bugs": {
+    "url": "https://github.com/rolling-scopes-school/vetalapo-JSFEEN2023Q4/issues"
+  },
+  "homepage": "https://github.com/rolling-scopes-school/vetalapo-JSFEEN2023Q4#readme",
+  "devDependencies": {
+    "lite-server": "2.6.1"
+  }
+}
