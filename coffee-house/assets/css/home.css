@@ -46,22 +46,25 @@
     line-height: 150%;
     padding: 20px 78px;
     border-radius: 35px;
-    transition: padding 0.5s ease;
+    transition: padding 500ms ease;
 }
 
 .over-text a:hover {
-    padding: 20px 68px;
+    padding: 20px 67px;
 }
 
 .over-text a svg {
-    position: relative;
-    bottom: -2px;
-    margin-left: 4px;
-    display: none;
+    position: absolute;
+    min-width: 24px;
+    bottom: 2px;
+    left: 117px;
+    bottom: 22px;
+    opacity: 0;
+    transition: opacity 500ms ease;
 }
 
 .over-text a:hover svg {
-    display: initial;
+    opacity: 1;
 }
 
 #favorite-coffee {
