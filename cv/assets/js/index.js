@@ -1,23 +1,23 @@
-"use strinct";
+"use strict";
 
-getMonthName = (date) => {
+const getMonthName = (date) => {
     const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     return month[date.getMonth()];
 };
 
-getYear = (date) => {
+const getYear = (date) => {
     return date.getFullYear();
 };
 
-getFormattedMonthAndYearForDate = (date) => {
+const getFormattedMonthAndYearForDate = (date) => {
     return `${getMonthName(date)}, ${getYear(date)}`;
 };
 
-getFormattedAttributeForDate = (date) => {
+const getFormattedAttributeForDate = (date) => {
     return `${getYear(date)}-${date.getMonth() + 1}-${date.getDate()}`;
 };
 
-updateCopyrightInfo = (date) => {
+const updateCopyrightInfo = (date) => {
     const copyrightElement = document.getElementById("copyright-date");
     
     copyrightElement.innerText = getFormattedMonthAndYearForDate(date);
