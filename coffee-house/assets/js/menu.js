@@ -40,4 +40,5 @@ function menuSelection(event) {
 
 // On Load
 (() => {
+    console.info("Coffee House, Week I\n\nSelf assessment:\n\t1. Checking validation of pages: +16\n\t2. The layout matches the design +42\n\t3. CSS Requirements +10\n\t4. Interactivity +32\n\n\tTotal: 100");
 })();
