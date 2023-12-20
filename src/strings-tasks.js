@@ -102,8 +102,8 @@ function removeLeadingAndTrailingWhitespaces(str) {
  *   removeLeadingWhitespaces('cat ') => 'cat '
  *   removeLeadingWhitespaces('\t\t\tHello, World! ') => 'Hello, World! '
  */
-function removeLeadingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeLeadingWhitespaces(str) {
+  return str.trimStart();
 }
 
 /**
