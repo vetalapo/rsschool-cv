@@ -1,0 +1,48 @@
+@media only screen and (max-width: 768px) {
+    body {
+        max-width: 768px;
+    }
+
+    header nav, header a.menu {
+        display: none;
+    }
+
+    header .hamburger-menu {
+        display: flex;
+        flex-direction: column;
+        width: 44px;
+        height: 44px;
+        gap: 8px;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid var(--border-dark);
+        border-radius: 50%;
+    }
+
+    header a.hamburger-menu svg {
+        width: 16px;
+    }
+
+    footer {
+        grid-template-columns: 1fr;
+        padding: 60px;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    body {
+        max-width: 380px;
+    }
+
+    .page-section {
+        margin: 0 16px;
+    }
+
+    #social h2 {
+        font-size: 32px;
+    }
+
+    footer {
+        padding: 60px 16px;
+    }
+}
