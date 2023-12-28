@@ -9,10 +9,16 @@
 
 #banner .image-container {
     display: flex;
+    height: 644px;
+    width: 100%;
     justify-content: center;
-    aspect-ratio: 8 / 4;
     border-radius: 40px;
     overflow: hidden;
+}
+
+#banner .image-container img {
+    margin-top: -28px;
+    margin-bottom: -28px;
 }
 
 .over-text {
@@ -29,6 +35,15 @@
     font-weight: 600;
     line-height: 105%;
     margin-bottom: 40px;
+    transform: scaleX(1.029);
+    transform-origin: 0 0;
+}
+
+.over-text h1 em, #favorite-coffee h2 em, #about h2 em {
+    display: inline-block;
+    transform: skew(5deg);
+    margin-left: -5px;
+    margin-right: 5px;
 }
 
 .over-text p {
@@ -80,6 +95,7 @@
 #favorite-coffee h2 {
     font-size: 60px;
     line-height: 125%;
+    transform: scale(1.023, 1);
 }
 
 .slide-caption, .slide-price{
@@ -98,6 +114,8 @@
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
+    letter-spacing: 0.45px;
+    margin-bottom: 40px;
 }
 
 /* About section */
@@ -107,7 +125,6 @@
     gap: 40px;
     justify-content: center;
     flex-direction: row;
-    margin-top: 40px;
 }
 
 #about .gallery .gallery-item {
@@ -119,6 +136,8 @@
 
 #about .gallery .gallery-item img {
     align-self: center;
+    margin-top: 0px;
+    margin-left: -33px
 }
 
 #about .gallery .gallery-item:first-child, #about .gallery .gallery-item:last-child {
@@ -135,12 +154,11 @@
 
 #about .gallery img {
     display: block;
-    scale: 1.058;
     transition: all 0.5s ease;
 }
 
 #about .gallery .gallery-item:hover img {
-    scale: 1;
+    scale: 1.1;
     transition: all 0.5s ease;
 }
 
@@ -155,7 +173,13 @@
 
 #mobile-apps .mobile-apps-description {
     max-width: 630px;
-    margin-right: 100px;
+    margin-right: 75px;
+    height: 460px;
+}
+
+#mobile-apps .mobile-apps-description h2 {
+    transform: scale(1.025, 1);
+    margin-left: 6px;
 }
 
 #mobile-apps .mobile-screens-photo {
@@ -166,6 +190,8 @@
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
+    margin-top: 58px;
+    margin-bottom: 41px;
 }
 
 #mobile-apps .mobile-apps-description p {
@@ -178,6 +204,7 @@
     display: flex;
     gap: 20px;
     padding-top: 40px;
+    margin-top: -16px;
 }
 
 #mobile-apps .mobile-apps-description ul li a {
@@ -236,12 +263,31 @@
     object-fit: cover;
 }
 
+.slide img {
+    height: 480px;
+    width: 475px;
+    margin-top: -10px;
+}
+
+.slide .slide-caption {
+    margin-bottom: 0;
+}
+
+.slide .slide-text {
+    margin-top: 18px;
+    margin-bottom: 0px;
+}
+
+.slide .slide-price {
+    margin-top: 22px;
+    margin-bottom: 0;
+}
+
 .slides-navigation {
     position: absolute;
     display: flex;
-    width: 100%;
-    top: 50%;
-    bottom: 50%;
+    width: 99.8%;
+    bottom: 49.5%;
     justify-content: space-between;
 }
 
@@ -255,6 +301,10 @@
     padding: 17px;
 }
 
+.slides-navigation a:first-child {
+    margin-left: 4px;
+}
+
 #slide-indicators {
     position: relative;
     display: flex;
@@ -264,7 +314,7 @@
     left: 50%;
     transform: translateX(-50%);
     gap: 12px;
-    margin-top: 40px;
+    margin-top: 44px;
 }
 
 .slider-dash {

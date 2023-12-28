@@ -2,6 +2,17 @@
     position: relative;
 }
 
+.page-section h1 {
+    transform: scaleX(1.02);
+}
+
+.page-section h1 em {
+    display: inline-block;
+    transform: skew(5deg);
+    margin-left: -5px;
+    margin-right: 5px;
+}
+
 .no-display {
     display: none!important;
 }
@@ -20,13 +31,14 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 40px;
+    margin-bottom: 39px;
+    margin-top: -2px;
 }
 
 #category-switch a {
     color: var(--text-dark);
     display: flex;
-    margin: 0 16px;
+    margin: 0 8px;
     padding: 8px 16px 8px 8px;
     justify-content: center;
     align-items: center;

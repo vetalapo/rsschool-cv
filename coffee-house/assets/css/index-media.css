@@ -12,7 +12,7 @@
         flex-direction: column;
         width: 44px;
         height: 44px;
-        gap: 8px;
+        gap: 7px;
         justify-content: center;
         align-items: center;
         border: 1px solid var(--border-dark);
@@ -20,12 +20,34 @@
     }
 
     header a.hamburger-menu svg {
-        width: 16px;
+        width: 18px;
     }
 
     footer {
         grid-template-columns: 1fr;
         padding: 60px;
+        height: auto;
+    }
+
+    footer #social {
+        margin-top: 38px;
+    }
+
+    #social ul {
+        margin: 40px 0;
+    }
+
+    footer #contacts {
+        margin-top: 40px;
+        margin-bottom: 27px;
+    }
+
+    footer #contacts h2 {
+        margin-bottom: 37px;
+    }
+    
+    footer #contacts .business-hours {
+        margin: 18px 0;
     }
 }
 
@@ -44,5 +66,18 @@
 
     footer {
         padding: 60px 16px;
+    }
+
+    footer #social {
+        margin-top: -3px;
+    }
+
+    #social h2 em {
+        display: unset;
+    }
+
+    footer #contacts {
+        margin-top: -17px;
+        margin-bottom: -14px;
     }
 }
