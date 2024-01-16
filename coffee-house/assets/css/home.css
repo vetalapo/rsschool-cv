@@ -106,6 +106,7 @@
     line-height: 150%;
 }
 
+/* About section */
 #about h2 {
     font-size: 60px;
     font-weight: 600;
@@ -114,7 +115,6 @@
     margin-bottom: 40px;
 }
 
-/* About section */
 #about .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -314,17 +314,23 @@
 }
 
 .slider-dash {
-    background-color: var(--border-light);
+    position: relative;
     width: 40px;
     height: 4px;
     border-radius: 100px;
+    background-color: var(--border-light);
 }
 
-.slider-dash-dark {
-    background-color: var(--border-dark);
-    width: 40px;
+.slider-dash.active:before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    max-width: 40px;
+    width: var(--slider-dash-percent, 1%);
     height: 4px;
     border-radius: 100px;
+    background-color: var(--border-dark);
 }
 
 /* Color inverter */
