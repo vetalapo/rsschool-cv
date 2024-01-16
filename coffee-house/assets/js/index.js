@@ -84,15 +84,6 @@ function resumeCarouselAutoSlide() {
     carouselInterval.resume();
 }
 
-function resetCarouselAutoSlide() {
-    if (!carouselInterval) {
-        return;
-    }
-
-    stopCarouselAutoSlide();
-    startCarouselAutoSlide();
-}
-
 function carouselInitMouseOver() {
     const carouselContainer = document.querySelector(".slideshow-container");
 
@@ -144,6 +135,8 @@ function setSliderDashProgress(percentage) {
 }
 
 function slideRight() {
+    stopCarouselAutoSlide();
+
     slideIndex++;
 
     if (slideIndex > 2) {
@@ -164,10 +157,14 @@ function slideRight() {
         }, 800);
     }
 
-    resetCarouselAutoSlide();
+    setTimeout(() => {
+        startCarouselAutoSlide();
+    }, 1500);
 };
 
 function slideLeft() {
+    stopCarouselAutoSlide();
+
     slideIndex--;
 
     if (slideIndex < 0) {
@@ -188,7 +185,9 @@ function slideLeft() {
         }, 800);
     }
 
-    resetCarouselAutoSlide();
+    setTimeout(() => {
+        startCarouselAutoSlide();
+    }, 1500);
 };
 
 function setBannerVideoSize() {
