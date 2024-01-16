@@ -26,6 +26,10 @@ class TouchEvent {
     }
 
     getSwipeDirection() {
+        if (!this.startEvent.changedTouches || !this.endEvent.changedTouches) {
+            return null;
+        }
+
         let start = this.startEvent.changedTouches[0];
         let end = this.endEvent.changedTouches[0];
 
@@ -113,7 +117,10 @@ function stopCarouselAutoSlide() {
     carouselFrame = null;
     setSliderDashProgress(0);
 
-    carouselInterval.pause();
+    if (carouselInterval) {
+        carouselInterval.pause();
+    }
+    
     carouselInterval = null;
 }
 
