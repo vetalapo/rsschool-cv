@@ -4,6 +4,55 @@
 let slideIndex = 0;
 let slideSize = 0;
 
+// Touch events
+let touchEvent = null;
+
+class TouchEvent {
+    static SWIPE_THRESHOLD = 1; // Minimum difference in pixels at which a swipe gesture is detected
+    static SWIPE_LEFT = 1;
+    static SWIPE_RIGHT = 2;
+
+    constructor(startEvent, endEvent) {
+        this.startEvent = startEvent;
+        this.endEvent = endEvent || null;
+    }
+
+    isSwipeLeft() {
+        return this.getSwipeDirection() == TouchEvent.SWIPE_LEFT;
+    }
+
+    isSwipeRight() {
+        return this.getSwipeDirection() == TouchEvent.SWIPE_RIGHT;
+    }
+
+    getSwipeDirection() {
+        let start = this.startEvent.changedTouches[0];
+        let end = this.endEvent.changedTouches[0];
+
+        if (!start || !end) {
+            return null;
+        }
+
+        let horizontalDifference = start.screenX - end.screenX;
+        let verticalDifference = start.screenY - end.screenY;
+
+        // Horizontal difference dominates
+        if (Math.abs(horizontalDifference) > Math.abs(verticalDifference)) {
+            if (horizontalDifference >= TouchEvent.SWIPE_THRESHOLD) {
+                return TouchEvent.SWIPE_LEFT;
+            } else if (horizontalDifference <= -TouchEvent.SWIPE_THRESHOLD) {
+                return TouchEvent.SWIPE_RIGHT;
+            }
+        }
+
+        return null;
+    }
+
+    setEndEvent(endEvent) {
+        this.endEvent = endEvent;
+    }
+}
+
 // Timer
 let carouselInterval = null;
 let carouselFrame = null;
@@ -68,7 +117,26 @@ function stopCarouselAutoSlide() {
     carouselInterval = null;
 }
 
-function pauseCarouselAutoSlide() {
+function handleSwipeGesture(event) {
+    if (!touchEvent) {
+        return;
+    }
+
+    touchEvent.setEndEvent(event);
+
+    if (touchEvent.isSwipeRight()) {
+        slideLeft()
+    } else if (touchEvent.isSwipeLeft()) {
+        slideRight();
+    }
+
+    // Reset event for next touch
+    touchEvent = null;
+}
+
+function pauseCarouselAutoSlide(event) {
+    touchEvent = new TouchEvent(event);
+
     if (!carouselInterval) {
         return;
     }
@@ -76,7 +144,9 @@ function pauseCarouselAutoSlide() {
     carouselInterval.pause();
 }
 
-function resumeCarouselAutoSlide() {
+function resumeCarouselAutoSlide(event) {
+    handleSwipeGesture(event);
+
     if (!carouselInterval) {
         return;
     }
