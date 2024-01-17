@@ -54,7 +54,7 @@ function toggleMenu() {
 }
 
 function toggleHamburgerMenu() {
-    if (screen.width > 768) {
+    if (window.innerWidth > 768) {
         return;
     }
 

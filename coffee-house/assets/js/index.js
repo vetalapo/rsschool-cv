@@ -268,15 +268,15 @@ function slideLeft() {
 };
 
 function setBannerVideoSize() {
-    const screenWidth = screen.width;
+    const windowWidth = window.innerWidth;
     const bannerVideo = document.getElementById("banner-video");
 
     if (bannerVideo) {
-        if (screenWidth > 768) {
+        if (windowWidth > 768) {
             bannerVideo.src = "assets/video/coffee-pour-1080p.mp4";
-        } else if (screenWidth <= 768 && screenWidth > 380) {
+        } else if (windowWidth <= 768 && windowWidth > 380) {
             bannerVideo.src = "assets/video/coffee-pour-720p.mp4";
-        } else if (screenWidth <= 380) {
+        } else if (windowWidth <= 380) {
             bannerVideo.src = "assets/video/coffee-pour-360p.mp4";
         }
 
