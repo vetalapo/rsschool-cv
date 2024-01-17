@@ -40,21 +40,13 @@
                 </svg>
             </a>
             <div class="hamburger-buttons-wrapper">
-                <a id="hamburger-menu" class="hamburger-menu-display" href="#" onclick="toggleHamburgerMenu()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="2" viewBox="0 0 18 2" fill="none">
-                        <path d="M1 1H17" stroke="#403F3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="2" viewBox="0 0 18 2" fill="none">
-                        <path d="M1 1H17" stroke="#403F3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-                <a id="hamburger-menu-close" href="#" onclick="toggleHamburgerMenu()">
-                    <svg class="left-line" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <path d="M1.34314 1.34326L12.6568 12.657" stroke="#403F3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <svg class="right-line" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <path d="M1.34314 12.657L12.6568 1.34327" stroke="#403F3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                <a id="hamburger-menu" onclick="toggleHamburgerMenu()">
+                    <div id="ham-button-line-one" class="hamburger-line-wrapper hamburger-line-one">
+                        <div class="hamburger-line"></div>
+                    </div>
+                    <div id="ham-button-line-two" class="hamburger-line-wrapper hamburger-line-two">
+                        <div class="hamburger-line"></div>
+                    </div>
                 </a>
             </div>
         </header>

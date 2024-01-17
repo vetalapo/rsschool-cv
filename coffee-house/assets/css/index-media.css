@@ -57,8 +57,8 @@
         bottom: 224px;
         align-items: end;
         font-size: 32px;
-        transform: translate(100%, 0);
         z-index: 1;
+        transform: translate(100%, 0);
     }
 
     #navigation-menu svg {
@@ -67,58 +67,75 @@
         height: 40px;
         width: 40px;
     }
-
-    #hamburger-menu, #hamburger-menu-close {
+    
+    /* Hamburger menu button */
+    #hamburger-menu {
         display: flex;
         flex-direction: column;
-        width: 44px;
-        height: 44px;
-        gap: 7px;
         justify-content: center;
         align-items: center;
+        width: 44px;
+        height: 44px;
+        gap: 6px;
         border: 1px solid var(--border-dark);
         border-radius: 50%;
     }
 
-    #hamburger-menu {
-        position: absolute;
-    }
-
-    .hamburger-menu-display {
-        opacity: 1;
-    }
-
-    .burger-menu-expand {
-        animation-name: burger-menu-fade-in-animation;
-        animation-duration: 0.2s;
-        animation-timing-function: ease-in-out;
-        animation-fill-mode: forwards;
-    }
-
-    .burger-menu-fade {
-        animation-name: burger-menu-fade-out-animation;
-        animation-duration: 0.2s;
-        animation-timing-function: ease-in-out;
-        animation-fill-mode: forwards;
-    }
-
-    #hamburger-menu svg, #hamburger-menu-close svg {
+    #hamburger-menu .hamburger-line-wrapper {
+        position: relative;
+        border-radius: 103px;
+        overflow: hidden;
         width: 18px;
+        height: 2px;
+        z-index: 1;
     }
 
-    #hamburger-menu-close {
-        gap: 0;
-        opacity: 0;
+    #hamburger-menu .hamburger-line {
+        width: 20px;
+        height: 5px;
+        stroke-width: 1.5px;
+        background-color: var(--border-dark);
     }
 
-    .hamburger-menu-close-display {
-        opacity: 1;
+    /* Hamburger menu button */
+    #hamburger-menu .hamburger-line-one {
+        position: absolute;
+        margin-bottom: 7.5px;
     }
 
-    #hamburger-menu-close .right-line {
-        margin-top: -14px;
+    #hamburger-menu .hamburger-line-two {
+        margin-top: 7.5px;
     }
 
+    .hamburger-line-one-rotate-in {
+        animation-name: hamburger-menu-to-cross-animation-one-in;
+        animation-duration: 350ms;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+    }
+
+    .hamburger-line-two-rotate-in {
+        animation-name: hamburger-menu-to-cross-animation-two-in;
+        animation-duration: 350ms;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+    }
+
+    .hamburger-line-one-rotate-out {
+        animation-name: hamburger-menu-revert-animation-one-out;
+        animation-duration: 350ms;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+    }
+
+    .hamburger-line-two-rotate-out {
+        animation-name: hamburger-menu-revert-animation-two-out;
+        animation-duration: 350ms;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+    }
+
+    /* Footer */
     footer {
         grid-template-columns: 1fr;
         padding: 60px;
@@ -193,12 +210,60 @@
     to { transform: translate(100%, 0); }
 }
 
-@keyframes burger-menu-fade-in-animation {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Hamburger menu Button animations */
+@keyframes hamburger-menu-to-cross-animation-one-in {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(3.5px) rotate(1deg);
+    }
+
+    100% {
+        transform: translateY(3.5px) rotate(45deg);
+    }
+    
 }
 
-@keyframes burger-menu-fade-out-animation {
-    from { opacity: 1; }
-    to { opacity: 0; }
+@keyframes hamburger-menu-to-cross-animation-two-in {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3.5px) rotate(-1deg);
+    }
+
+    100% {
+        transform: translateY(-3.5px) rotate(-45deg);
+    }
+}
+
+@keyframes hamburger-menu-revert-animation-one-out {
+    0% {
+        transform: translateY(3.5px) rotate(45deg);
+    }
+
+    50% {
+        transform: translateY(3.5px) rotate(1deg);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes hamburger-menu-revert-animation-two-out {
+    0% {
+        transform: translateY(-3.5px) rotate(-45deg);
+    }
+
+    50% {
+        transform: translateY(-3.5px) rotate(-1deg);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }

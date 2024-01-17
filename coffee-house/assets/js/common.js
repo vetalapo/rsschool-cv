@@ -2,21 +2,25 @@
 
 // Hamburger menu
 function toggleHamburgerButton() {
-    const hamburgerButton = document.getElementById("hamburger-menu");
-    const hamburgerCloseButton = document.getElementById("hamburger-menu-close");
-    
-    if (hamburgerButton.classList.contains("burger-menu-fade")) {
-        hamburgerButton.classList.remove("burger-menu-fade");
-        hamburgerButton.classList.add("burger-menu-expand");
+    const hamButtonOne = document.getElementById("ham-button-line-one");
+    const hamButtonTwo = document.getElementById("ham-button-line-two");
 
-        hamburgerCloseButton.classList.remove("burger-menu-expand");
-        hamburgerCloseButton.classList.add("burger-menu-fade");
+    // Line One
+    if (hamButtonOne.classList.contains("hamburger-line-one-rotate-in")) {
+        hamButtonOne.classList.remove("hamburger-line-one-rotate-in");
+        hamButtonOne.classList.add("hamburger-line-one-rotate-out");
     } else {
-        hamburgerButton.classList.remove("burger-menu-expand");
-        hamburgerButton.classList.add("burger-menu-fade");
+        hamButtonOne.classList.remove("hamburger-line-one-rotate-out");
+        hamButtonOne.classList.add("hamburger-line-one-rotate-in");
+    }
 
-        hamburgerCloseButton.classList.remove("burger-menu-fade");
-        hamburgerCloseButton.classList.add("burger-menu-expand");
+    // Line Two
+    if (hamButtonTwo.classList.contains("hamburger-line-two-rotate-in")) {
+        hamButtonTwo.classList.remove("hamburger-line-two-rotate-in");
+        hamButtonTwo.classList.add("hamburger-line-two-rotate-out");
+    } else {
+        hamButtonTwo.classList.remove("hamburger-line-two-rotate-out");
+        hamButtonTwo.classList.add("hamburger-line-two-rotate-in");
     }
 }
 
