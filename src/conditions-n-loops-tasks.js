@@ -437,7 +437,7 @@ function rotateMatrix(matrix) {
 
 /**
  * Sorts an array of numbers in ascending order in place.
- * Employ any sorting algorithm of your choice.
+ * Employ any sorting algorithm of your choice (took Shell sort).
  * Take into account that the array can be very large. Consider how you can optimize your solution.
  * In this task, the use of methods of the Array and String classes is not allowed.
  *
@@ -449,8 +449,25 @@ function rotateMatrix(matrix) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  const arrCopy = arr;
+
+  for (
+    let gap = Math.trunc(arr.length / 2);
+    gap > 0;
+    gap = Math.trunc(gap / 2)
+  ) {
+    for (let i = gap; i < arr.length; i += 1) {
+      const tempVal = arrCopy[i];
+      let j;
+
+      for (j = i; j >= gap && arr[j - gap] > tempVal; j -= gap) {
+        arrCopy[j] = arrCopy[j - gap];
+      }
+
+      arrCopy[j] = tempVal;
+    }
+  }
 }
 
 /**
