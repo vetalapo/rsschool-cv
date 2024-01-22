@@ -42,6 +42,7 @@ function getMaxNumber(a, b, c) {
   if (a > b) {
     return a > c ? a : c;
   }
+
   return b > c ? b : c;
 }
 
@@ -117,6 +118,7 @@ function isIsoscelesTriangle(a, b, c) {
  */
 function convertToRomanNumerals(num) {
   let tensResult = '';
+
   for (let i = 0; i < Math.trunc(num / 10); i += 1) {
     tensResult += 'X';
   }
@@ -154,6 +156,7 @@ function convertToRomanNumerals(num) {
  */
 function convertNumberToString(numberStr) {
   let result = '';
+
   for (let i = 0; i < numberStr.length; i += 1) {
     const char = numberStr[i];
     let currentResult = '';
@@ -347,8 +350,46 @@ function getBalanceIndex(arr) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(/* size */) {
-  throw new Error('Not implemented');
+function getSpiralMatrix(size) {
+  const matrix = new Array(size);
+
+  for (let i = 0; i < size; i += 1) {
+    const arr = new Array(size);
+
+    for (let j = 0; j < size; j += 1) {
+      arr[j] = 0;
+    }
+
+    matrix[i] = arr;
+  }
+
+  let row = 0;
+  let col = 0;
+
+  let currentNum = 1;
+  const last = size * size;
+
+  while (currentNum < last + 1) {
+    matrix[row][col] = currentNum;
+
+    if (
+      !(row - 1 >= 0 && matrix[row - 1][col] === 0) &&
+      col + 1 < size &&
+      matrix[row][col + 1] === 0
+    ) {
+      col += 1;
+    } else if (row + 1 < size && matrix[row + 1][col] === 0) {
+      row += 1;
+    } else if (col - 1 >= 0 && matrix[row][col - 1] === 0) {
+      col -= 1;
+    } else if (row - 1 >= 0 && matrix[row - 1][col] === 0) {
+      row -= 1;
+    }
+
+    currentNum += 1;
+  }
+
+  return matrix;
 }
 
 /**
@@ -366,8 +407,32 @@ function getSpiralMatrix(/* size */) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-function rotateMatrix(/* matrix */) {
-  throw new Error('Not implemented');
+function rotateMatrix(matrix) {
+  const resultMatrix = new Array(matrix.length);
+
+  for (let i = 0; i < matrix.length; i += 1) {
+    resultMatrix[i] = new Array(matrix.length);
+  }
+
+  for (
+    let row = 0, rowRes = matrix.length - 1;
+    row < matrix.length;
+    row += 1, rowRes -= 1
+  ) {
+    for (let col = 0; col < matrix.length; col += 1) {
+      resultMatrix[col][rowRes] = matrix[row][col];
+    }
+  }
+
+  const matrixRef = matrix;
+
+  for (let row = 0; row < matrix.length; row += 1) {
+    for (let col = 0; col < matrix.length; col += 1) {
+      matrixRef[row][col] = resultMatrix[row][col];
+    }
+  }
+
+  return matrix;
 }
 
 /**
