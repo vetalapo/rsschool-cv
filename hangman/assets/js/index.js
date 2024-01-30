@@ -48,7 +48,6 @@ class Hangman {
             { keyword: "scala", hint: "What if Haskell ran on the JVM?" },
             { keyword: "clojure", hint: "What if LISP ran on the JVM?" },
             { keyword: "lua", hint: "What if game developers got tired of C++?" },
-            { keyword: "mathematica", hint: "What if Stephen Wolfram invented everything?" },
             { keyword: "malbolge", hint: "What if there is no god? 😈" }
         ];
     }

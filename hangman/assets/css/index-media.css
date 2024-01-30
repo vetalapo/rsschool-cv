@@ -37,7 +37,43 @@
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1280px) {
+    .hangman-game-container {
+        grid-template-columns: 0.8fr 1fr;
+    }
+
+    .game-title {
+        font-size: 50px;
+    }
+
+    #quiz-container {
+        gap: 40px;
+    }
+}
+
+@media only screen and (max-width: 1260px) {
+    #code-word {
+        font-size: 55px;
+    }
+
+    #quiz-container {
+        font-size: 35px;
+    }
+}
+
+@media only screen and (max-width: 1220px) {
+    .game-title {
+        font-size: 40px;
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+    .game-title {
+        font-size: 35px;
+    }
+}
+
+@media only screen and (max-width: 950px) {
     .hangman-game-container {
         grid-template-columns: 1fr;
     }
@@ -65,14 +101,14 @@
         margin-bottom: 15px;
     }
 
+    #code-word {
+        font-size: 50px;
+    }
+
     .keyboard-container {
         gap: 10px;
     }
 
-    #code-word {
-        font-size: 50px;
-    }
-    
     .keys-row {
         gap: 10px;
     }
@@ -105,5 +141,167 @@
     }
 }
 
+@media only screen and (max-width: 700px) {
+    .keyboard-container {
+        gap: 8px;
+    }
+
+    .keys-row {
+        gap: 8px;
+    }
+
+    .key-button {
+        width: 55px;
+        height: 55px;
+        font-size: 20px;
+    }
+
+    #quiz-container {
+        font-size: 20px;
+    }
+
+    #code-word {
+        font-size: 30px;
+        letter-spacing: 30px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .keyboard-container {
+        gap: 5px;
+    }
+
+    .keys-row {
+        gap: 5px;
+    }
+
+    .key-button {
+        width: 50px;
+        height: 50px;
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 560px) {
+    .keyboard-container {
+        gap: 4px;
+    }
+
+    .keys-row {
+        gap: 4px;
+    }
+
+    .key-button {
+        width: 45px;
+        height: 45px;
+        font-size: 13px;
+        border-radius: 18px;
+    }
+
+    #quiz-container {
+        gap: 40px;
+    }
+}
+
+@media only screen and (max-width: 510px) {
+    .keyboard-container {
+        gap: 4px;
+    }
+
+    .keys-row {
+        gap: 4px;
+    }
+
+    .key-button {
+        width: 45px;
+        height: 45px;
+        font-size: 13px;
+        border-radius: 15px;
+    }
+}
+
+@media only screen and (max-width: 505px) {
+    #gallows-container {
+        gap: 50px;
+    }
+
+    .keyboard-container {
+        gap: 3px;
+    }
+
+    .keys-row {
+        gap: 3px;
+    }
+
+    .key-button {
+        width: 42px;
+        height: 42px;
+        font-size: 12px;
+        border-radius: 12px;
+    }
+
+    #code-word {
+        font-size: 28px;
+        letter-spacing: 25px;
+    }
+}
+
+@media only screen and (max-width: 475px) {
+    .key-button {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .key-button {
+        width: 35px;
+        height: 35px;
+        border-radius: 8px;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .keyboard-container {
+        gap: 2px;
+    }
+
+    .keys-row {
+        gap: 2px;
+    }
+
+    body {
+        margin: 25px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .key-button {
+        width: 34px;
+        height: 34px;
+        border-radius: 5px;
+    }
+
+    body {
+        margin: 20px;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    body {
+        margin: 15px;
+    }
+}
+
 @media only screen and (max-width: 380px) {
+    body {
+        margin: 10px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    body {
+        margin: 5px;
+    }
 }
