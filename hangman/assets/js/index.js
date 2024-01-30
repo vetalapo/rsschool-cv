@@ -17,6 +17,7 @@ class Hangman {
         this.answerSet = new Set();
         this.answerPlain = "";
         this.answerMasked = "";
+        this.questionId = 0;
 
         this.hangmanWords = [
             { keyword: "python", hint: "What if everything was a dict?" },
@@ -173,7 +174,16 @@ class Hangman {
         this.processingBlock = false;
 
         // Get quiz, Set answer
-        const randomIndex = Math.floor(Math.random() * this.hangmanWords.length);
+        // Randomizing
+        let randomIndex = this.getRandomIndex(this.hangmanWords.length);
+
+        while (randomIndex === this.questionId) {
+            randomIndex = this.getRandomIndex(this.hangmanWords.length);
+        }
+
+        this.questionId = randomIndex;
+
+        // Getting quiz;
         const randomQuiz = this.hangmanWords[randomIndex];
 
         this.answerSet = new Set(randomQuiz.keyword);
@@ -190,6 +200,10 @@ class Hangman {
 
         // Keyboard
         this.keyboard.reset();
+    }
+
+    getRandomIndex(upperLimit) {
+        return Math.floor(Math.random() * upperLimit);
     }
 }
 
