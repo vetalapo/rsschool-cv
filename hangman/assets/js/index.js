@@ -173,7 +173,7 @@ class Hangman {
         this.processingBlock = false;
 
         // Get quiz, Set answer
-        const randomIndex = Math.floor(Math.random() * (this.hangmanWords.length - 1));
+        const randomIndex = Math.floor(Math.random() * this.hangmanWords.length);
         const randomQuiz = this.hangmanWords[randomIndex];
 
         this.answerSet = new Set(randomQuiz.keyword);
