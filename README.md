@@ -10,6 +10,7 @@
 4. Go to folder `basic-js-ds`
 5. To install all dependencies use [`npm install`](https://docs.npmjs.com/cli/install)
 6. Run `npm run test` in command line.
+    -  To run test in a Docker container run `npm run docker-test` in command line
 7. You will see the number of pending, passing and failing tests. 100% of passing tests is equal to max score for the task
 
 ---

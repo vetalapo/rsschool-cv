@@ -11,7 +11,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "docker-test": "clear && docker build -t node-docker-image-test --progress=plain --no-cache --target test . && docker image rm node-docker-image-test"
   },
   "repository": {
     "type": "git",
