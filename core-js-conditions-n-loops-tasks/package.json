@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run lint && mocha",
+    "docker-test": "clear && docker build -t node-docker-image-test --progress=plain --no-cache --target test . && docker image rm node-docker-image-test",
     "lint": "node node_modules/eslint/bin/eslint.js ./src",
     "lint:fix": "node node_modules/eslint/bin/eslint.js ./src --fix"
   },

@@ -58,6 +58,7 @@ The task is to implement functions on different Core JS topics. This module requ
    Implement the function by any way and verify your solution by running tests until the failed test become passed (green).
 
 8. Save the solution and run `npm test` in command line. If everything is OK you can try to resolve the next task.
+  - To run test in a Docker container run `npm run docker-test` in command line (npm install is not required if you're using this option)
 
 ## Submit to [rs app](https://app.rs.school/)
 
