@@ -60,7 +60,7 @@ button {
 }
 
 /* Heading */
-.section-heading, .task-label[for="new-task-text"], .task-create-label {
+.section-heading, .task-label[for="new-task-text"] {
   color: #333;
   font-weight: 700;
   font-size: 15px;
@@ -86,7 +86,7 @@ button {
 }
 
 /* New Task */
-.task-create-label {
+.task-create-heading {
   display: block;
   margin: 0 0 20px;
 }
