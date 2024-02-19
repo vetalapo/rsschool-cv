@@ -135,12 +135,12 @@ button {
 
 /* Edit Task */
 .task-item .task-text {
-  display:none
+  display: none
 }
 .task-item.edit-mode .task-text {
-  display:inline-block;
+  display: inline-block;
   width:224px
 }
 .task-item.edit-mode .task-label {
-  display:none;
+  display: none;
 }
