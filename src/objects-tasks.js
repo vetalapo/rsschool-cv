@@ -131,11 +131,7 @@ function isEmptyObject(obj) {
  *    console.log(immutableObj) => {a: 1, b: 2}
  */
 function makeImmutable(obj) {
-  const returnObj = { ...obj };
-
-  Object.freeze(returnObj);
-
-  return returnObj;
+  return Object.freeze(obj);
 }
 
 /**
@@ -381,32 +377,71 @@ function group(array, keySelector, valueSelector) {
  */
 
 const cssSelectorBuilder = {
-  element(/* value */) {
-    throw new Error('Not implemented');
+  value: '',
+  position: 0,
+
+  element(value) {
+    return this.newSelector(value, 0, 'hasElement');
   },
 
-  id(/* value */) {
-    throw new Error('Not implemented');
+  id(value) {
+    return this.newSelector(`#${value}`, 1, 'hasId');
   },
 
-  class(/* value */) {
-    throw new Error('Not implemented');
+  class(value) {
+    return this.newSelector(`.${value}`, 2);
   },
 
-  attr(/* value */) {
-    throw new Error('Not implemented');
+  attr(value) {
+    return this.newSelector(`[${value}]`, 3);
   },
 
-  pseudoClass(/* value */) {
-    throw new Error('Not implemented');
+  pseudoClass(value) {
+    return this.newSelector(`:${value}`, 4);
   },
 
-  pseudoElement(/* value */) {
-    throw new Error('Not implemented');
+  pseudoElement(value) {
+    return this.newSelector(`::${value}`, 5, 'hasPseudoElement');
   },
 
-  combine(/* selector1, combinator, selector2 */) {
-    throw new Error('Not implemented');
+  combine(selector1, combinator, selector2) {
+    const currCopy = { ...this };
+    currCopy.value = `${selector1.value} ${combinator} ${selector2.value}`;
+
+    return currCopy;
+  },
+
+  stringify() {
+    return this.value;
+  },
+
+  newSelector(value, position, element) {
+    if (this.position > position) {
+      throw new Error(
+        'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
+      );
+    }
+
+    if (
+      (element === 'hasElement' && this.hasElement) ||
+      (element === 'hasId' && this.hasId) ||
+      (element === 'hasPseudoElement' && this.hasPseudoElement)
+    ) {
+      throw new Error(
+        'Element, id and pseudo-element should not occur more then one time inside the selector'
+      );
+    }
+
+    const newObj = { ...this };
+
+    newObj.value += value;
+    newObj.position = position;
+
+    if (element) {
+      newObj[element] = true;
+    }
+
+    return newObj;
   },
 };
 
