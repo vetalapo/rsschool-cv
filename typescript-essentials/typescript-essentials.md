@@ -4,6 +4,8 @@
 
 Here is a collection of badges I earned from completing Microsoft Learn's TypeScript modules:
 
+0. **Build JavaScript applications using TypeScript**
+  [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/blkz6bfd)]
 1. **Getting Started with TypeScript**:
   [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/uf9qbcd3),
   [Reflections](1.%20TypeScript-GettingStartedWithTypeScript-Reflections.md)]
@@ -26,7 +28,7 @@ Here is a collection of badges I earned from completing Microsoft Learn's TypeSc
   [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/ejqysdrp),
   [Reflections](7.%20TypeScript-WorkWithExternalLibrariesInTypeScript-Reflections.md)]
 8. **Organize Code with Namespaces in TypeScript**:
-  [[Badge](badge-link),
+  [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/hy3sahk8),
   [Reflections](8.%20TypeScript-OrganizeCodeWithNamespacesInTypeScript-Reflections.md)]
 
 ## Reflections
