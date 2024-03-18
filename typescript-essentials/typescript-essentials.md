@@ -17,7 +17,7 @@ Here is a collection of badges I earned from completing Microsoft Learn's TypeSc
   [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/zp7h7pv2),
   [Reflections](4.%20TypeScript-DevelopTypedFunctionsInTypeScript-Reflections.md)]
 5. **Declare and Instantiate Classes in TypeScript**:
-  [[Badge](badge-link),
+  [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/3xut8ndh),
   [Reflections](5.%20TypeScript-DeclareAndInstantiateClassesInTypeScript-Reflections.md)]
 6. **Generics in TypeScript**:
   [[Badge](badge-link),
