@@ -8,28 +8,28 @@ Here is a collection of badges I earned from completing Microsoft Learn's TypeSc
   [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/blkz6bfd)]
 1. **Getting Started with TypeScript**:
   [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/uf9qbcd3),
-  [Reflections](1.%20TypeScript-GettingStartedWithTypeScript-Reflections.md)]
+  [Reflections](1.%20TypeScript-GettingStartedWithTypeScript-Reflections)]
 2. **Declare Variable Types in TypeScript**:
   [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/7ealy2ez),
-  [Reflections](2.%20TypeScript-DeclareVariableTypesInTypeScript-Reflections.md)]
+  [Reflections](2.%20TypeScript-DeclareVariableTypesInTypeScript-Reflections)]
 3. **Implement Interfaces in TypeScript**:
   [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/dgbzq9fj),
-  [Reflections](3.%20TypeScript-ImplementInterfacesInTypeScript-Reflections.md)]
+  [Reflections](3.%20TypeScript-ImplementInterfacesInTypeScript-Reflections)]
 4. **Develop Typed Functions in TypeScript**:
   [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/zp7h7pv2),
-  [Reflections](4.%20TypeScript-DevelopTypedFunctionsInTypeScript-Reflections.md)]
+  [Reflections](4.%20TypeScript-DevelopTypedFunctionsInTypeScript-Reflections)]
 5. **Declare and Instantiate Classes in TypeScript**:
   [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/3xut8ndh),
-  [Reflections](5.%20TypeScript-DeclareAndInstantiateClassesInTypeScript-Reflections.md)]
+  [Reflections](5.%20TypeScript-DeclareAndInstantiateClassesInTypeScript-Reflections)]
 6. **Generics in TypeScript**:
   [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/hy3sy948),
-  [Reflections](6.%20TypeScript-GenericsInTypeScript-Reflections.md)]
+  [Reflections](6.%20TypeScript-GenericsInTypeScript-Reflections)]
 7. **Work with External Libraries in TypeScript**:
   [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/ejqysdrp),
-  [Reflections](7.%20TypeScript-WorkWithExternalLibrariesInTypeScript-Reflections.md)]
+  [Reflections](7.%20TypeScript-WorkWithExternalLibrariesInTypeScript-Reflections)]
 8. **Organize Code with Namespaces in TypeScript**:
   [[Badge](https://learn.microsoft.com/en-us/users/vetalapo/achievements/hy3sahk8),
-  [Reflections](8.%20TypeScript-OrganizeCodeWithNamespacesInTypeScript-Reflections.md)]
+  [Reflections](8.%20TypeScript-OrganizeCodeWithNamespacesInTypeScript-Reflections)]
 
 ## Reflections
 
