@@ -51,7 +51,7 @@ function getTime(date) {
  * '2024-01-30T00:00:00.000Z' => 'Tuesday'
  */
 function getDayName(date) {
-  return new Intl.DateTimeFormat('en-GB', { weekday: 'long' }).format(
+  return new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
     new Date(date)
   );
 }
@@ -198,8 +198,24 @@ function getCountWeekendsInMonth(month, year) {
  * Date(2024, 0, 31) => 5
  * Date(2024, 1, 23) => 8
  */
-function getWeekNumberByDate(/* date */) {
-  throw new Error('Not implemented');
+function getWeekNumberByDate(date) {
+  const startDate = new Date(date.getFullYear(), 0, 1);
+
+  const addDay = () => {
+    startDate.setDate(startDate.getDate() + 1);
+  };
+
+  let weekCount = 1;
+
+  while (startDate < date) {
+    if (startDate.getDay() === 0) {
+      weekCount += 1;
+    }
+
+    addDay();
+  }
+
+  return weekCount;
 }
 
 /**
