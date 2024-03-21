@@ -106,19 +106,9 @@ function getCountDaysInMonth(month, year) {
  */
 function getCountDaysOnPeriod(dateStart, dateEnd) {
   const msPerDay = 86400000;
+  const msDiff = Date.parse(dateEnd) - Date.parse(dateStart);
 
-  const start = new Date(dateStart);
-  const end = new Date(dateEnd);
-
-  const startUtc = Date.UTC(
-    start.getFullYear(),
-    start.getMonth(),
-    start.getDate()
-  );
-
-  const endUtc = Date.UTC(end.getFullYear(), end.getMonth(), end.getDate());
-
-  return Math.floor((endUtc - startUtc) / msPerDay) + 1;
+  return Math.trunc(msDiff / msPerDay) + 1;
 }
 
 /**
