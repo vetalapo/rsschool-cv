@@ -77,15 +77,10 @@ function getDayName(date) {
  */
 function getNextFriday(date) {
   const currWeekday = date.getDay();
-  let diff;
-
-  if (currWeekday < 4) {
-    diff = 5 - currWeekday;
-  } else {
-    diff = 6 + (6 - currWeekday);
-  }
+  const diff = currWeekday === 5 ? 7 : (5 - currWeekday + 7) % 7;
 
   const result = new Date(date);
+
   result.setDate(result.getDate() + diff);
 
   return result;
