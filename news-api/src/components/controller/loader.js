@@ -7,16 +7,18 @@ class Loader {
     getResp(
         { endpoint, options = {} },
         callback = () => {
-            console.error('No callback for GET response');
+            console.error("No callback for GET response");
         }
     ) {
-        this.load('GET', endpoint, callback, options);
+        this.load("GET", endpoint, callback, options);
     }
 
     errorHandler(res) {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === 401 || res.status === 404) {
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
+            }
+
             throw Error(res.statusText);
         }
 

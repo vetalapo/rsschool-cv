@@ -86,7 +86,7 @@
 }
 
 .news__item .news__description .news__read-more a:after {
-    content: '→';
+    content: "→";
     margin-left: -10px;
     opacity: 0;
     vertical-align: middle;
@@ -108,7 +108,7 @@
 }
 
 .news__item p:first-of-type:before {
-    content: '';
+    content: "";
     position: absolute;
     height: 5px;
     background: #5ad67d;
@@ -139,7 +139,7 @@
     .news__item .news__description:before {
         -webkit-transform: skewX(-3deg);
         transform: skewX(-3deg);
-        content: '';
+        content: "";
         background: #fff;
         width: 30px;
         position: absolute;
