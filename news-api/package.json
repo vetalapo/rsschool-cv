@@ -1,6 +1,6 @@
 {
-    "name": "NewsJS",
-    "version": "1.0.0",
+    "name": "news-api",
+    "version": "2.0.0",
     "description": "",
     "main": "webpack.base.config.js",
     "scripts": {
@@ -10,12 +10,12 @@
     },
     "repository": {
         "type": "git",
-        "url": ""
+        "url": "https://github.com/vetalapo/rsschool-projects/news-api"
     },
     "keywords": [],
-    "author": "Aleh Serhiyenia",
+    "author": "Aleh Serhiyenia / Vitaly Dushkin",
     "license": "ISC",
-    "homepage": "",
+    "homepage": "https://vetalapo.github.io/rsschool-projects/news-api/",
     "devDependencies": {
         "clean-webpack-plugin": "^4.0.0",
         "copy-webpack-plugin": "^12.0.2",
