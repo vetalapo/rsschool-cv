@@ -30,9 +30,9 @@
 
 .source__item:hover,
 .source__item:focus {
-    border-color: #3fcc59;
-    color: #69db7e;
-    box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+    border-color: var(--main-highlight-border);
+    color: var(--main-highlight);
+    box-shadow: 0 0.5em 0.5em -0.4em var(--main-highlight);
     transform: translateY(-0.25em);
 }
 

@@ -1,3 +1,9 @@
+:root {
+    --main-color: #30c5ff;
+    --main-highlight: #69db7e;
+    --main-highlight-border: #3fcc59;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -22,28 +28,30 @@ header h1 {
     font-weight: 800;
 }
 
+main {
+    display: flex;
+    gap: 20px;
+}
+
 footer {
     padding: 0.5em;
-    height: 100px;
-    display: grid;
+    display: flex;
     align-items: center;
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: auto;
-    gap: 0 0.5em;
+    justify-content: space-between;
 }
 
 footer .copyright {
     font-size: 14px;
-    color: #30c5ff;
+    color: var(--main-color);
     text-align: center;
 }
 
 footer .copyright a {
-    color: #70d6ff;
+    color: var(--main-color);
 }
 
 footer .copyright a:hover {
-    color: #69db7e;
+    color: var(--main-highlight);
 }
 
 footer .copyright:before {
@@ -59,12 +67,18 @@ footer .logo {
 }
 
 footer .github {
+    background-color: var(--main-color);
     height: 2.5em;
     justify-self: end;
     aspect-ratio: 1;
     border-radius: 50%;
     background-image: url("./assets/github-logo.png");
-    box-shadow: 0 0 1px 1px #70d6ff, inset 0 0 1px 1px #70d6ff;
+    box-shadow: 0 0 1px 1px var(--main-color), inset 0 0 1px 1px var(--main-color);
+}
+
+footer .github:hover {
+    background-color: var(--main-highlight);
+    box-shadow: 0 0 1px 1px var(--main-highlight), inset 0 0 1px 1px var(--main-highlight);
 }
 
 footer .logo {
@@ -73,8 +87,8 @@ footer .logo {
     background-image: url("./assets/rs-school-js.svg");
 }
 
-main {
-    display: flex;
+footer .logo:hover {
+    background-image: url("./assets/rs-school-js.svg#hover");
 }
 
 @media (max-width: 1280px) {
