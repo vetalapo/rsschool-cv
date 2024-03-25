@@ -30,7 +30,9 @@ export class AppController extends AppLoader {
 
                     if (sourceId === "all" && this.sourcesList) {
                         const list: string = this.getRandomElements<NewsSource>(this.sourcesList, 20)
-                            .reduce((acc: string, item: NewsSource): string => `${acc + item.id},`, "")
+                            .reduce((acc: string, item: NewsSource): string => {
+                                return `${acc + item.id},`;
+                            }, "")
                             .slice(0, -1);
 
                         getResp(list);
