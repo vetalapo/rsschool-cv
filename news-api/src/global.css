@@ -1,0 +1,99 @@
+:root {
+    --main-color: #30c5ff;
+    --main-highlight: #69db7e;
+    --main-highlight-border: #3fcc59;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+    color: #fff;
+    background: #17181c;
+    font-family: sans-serif;
+}
+
+header {
+    padding: 10px 30px;
+}
+
+header h1 {
+    font-size: 40px;
+    font-weight: 800;
+}
+
+main {
+    display: flex;
+    gap: 20px;
+}
+
+footer {
+    padding: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+footer .copyright {
+    font-size: 14px;
+    color: var(--main-color);
+    text-align: center;
+}
+
+footer .copyright a {
+    color: var(--main-color);
+}
+
+footer .copyright a:hover {
+    color: var(--main-highlight);
+}
+
+footer .copyright:before {
+    content: "©";
+}
+
+footer .github,
+footer .logo {
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+footer .github {
+    background-color: var(--main-color);
+    height: 2.5em;
+    justify-self: end;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-image: url("./assets/github-logo.png");
+    box-shadow: 0 0 1px 1px var(--main-color), inset 0 0 1px 1px var(--main-color);
+}
+
+footer .github:hover {
+    background-color: var(--main-highlight);
+    box-shadow: 0 0 1px 1px var(--main-highlight), inset 0 0 1px 1px var(--main-highlight);
+}
+
+footer .logo {
+    height: 1.75em;
+    aspect-ratio: 2.7/1;
+    background-image: url("./assets/rs-school-js.svg");
+}
+
+footer .logo:hover {
+    background-image: url("./assets/rs-school-js.svg#hover");
+}
+
+@media (max-width: 1280px) {
+    main {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
