@@ -4,7 +4,7 @@
   "description": "Core JS promises task",
   "main": "index.js",
   "scripts": {
-    "test": "clear && npm run lint && mocha",
+    "test": "clear && npm run lint:fix && npm run lint && mocha",
     "lint": "node node_modules/eslint/bin/eslint.js ./src",
     "lint:fix": "node node_modules/eslint/bin/eslint.js ./src --fix"
   },
