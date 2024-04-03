@@ -58,9 +58,7 @@ function getPromiseResult(source) {
  * [Promise.reject(1), Promise.reject(2), Promise.reject(3)]    => Promise rejected
  */
 function getFirstResolvedPromiseResult(promises) {
-  return Promise.any(promises)
-    .then((value) => value)
-    .catch((value) => value);
+  return Promise.any(promises);
 }
 
 /**
@@ -87,8 +85,13 @@ function getFirstPromiseResult(promises) {
 }
 
 /**
- * Attempts to resolve all provided promises. If all promises resolve successfully, it returns a promise that resolves with an array of their values.
- * If any of the promises are rejected, it returns a promise that is immediately rejected with the reason of the first promise that was rejected.
+ * Attempts to resolve all provided promises.
+ * If all promises resolve successfully,
+ * it returns a promise that resolves with an array of their values.
+ *
+ * If any of the promises are rejected,
+ * it returns a promise that is immediately
+ * rejected with the reason of the first promise that was rejected.
  *
  * @param {Array<Promise<number>>} promises
  * @return {Promise<Array<number>> }
@@ -97,8 +100,8 @@ function getFirstPromiseResult(promises) {
  * [Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)] => Promise fulfilled with [1, 2, 3]
  * [Promise.resolve(1), Promise.reject(2), Promise.resolve(3)] => Promise rejected with 2
  */
-function getAllOrNothing(/* promises */) {
-  throw new Error('Not implemented');
+function getAllOrNothing(promises) {
+  return Promise.all(promises);
 }
 
 /**
