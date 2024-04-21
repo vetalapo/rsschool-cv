@@ -1,0 +1,16 @@
+.modal {
+  color: white;
+  font-size: 50px;
+  border-radius: 3px;
+  text-align: center;
+  background-color: maroon;
+  opacity: 0.8;
+  padding: 20px;
+  position: fixed;
+  top: 50%;
+  margin-top: -0.625em;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}

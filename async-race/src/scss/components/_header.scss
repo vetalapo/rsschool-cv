@@ -1,0 +1,20 @@
+.header {
+  padding: 20px 20px 20px 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+
+  .logo-container {
+    .github:hover,
+    .logo-rs:hover {
+      transform: scale(95%);
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .header {
+    flex-direction: column-reverse;
+  }
+}

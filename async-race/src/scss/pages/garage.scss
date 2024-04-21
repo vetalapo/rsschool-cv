@@ -1,0 +1,58 @@
+.garage {
+  padding-left: 10px;
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    gap: 10px;
+  }
+
+  .create-car,
+  .update-car,
+  .race-controls {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .race-controls {
+    margin-top: 10px;
+  }
+
+  .track-container {
+    .track {
+      margin-top: 20px;
+      border-bottom: 5px solid white;
+      border-top: 5px solid white;
+
+      .controls-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        .car-manipulation,
+        .engine-control {
+          display: flex;
+          flex-direction: column;
+          width: 80px;
+          gap: 5px;
+          margin: 5px 0px;
+        }
+      }
+
+      .track-layout {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-top: 5px dashed white;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .garage {
+    .menu {
+      margin: auto;
+    }
+  }
+}
