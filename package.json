@@ -1,0 +1,18 @@
+{
+    "name": "ecommerce",
+    "version": "0.0.1",
+    "description": "eCommerce platform replicates real-world shopping experiences in a digital environment.",
+    "scripts": {
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/vetalapo/eCommerce.git"
+    },
+    "author": "Vitaly Dushkin",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/vetalapo/eCommerce/issues"
+    },
+    "homepage": "https://github.com/vetalapo/eCommerce#readme"
+}
