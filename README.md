@@ -25,7 +25,7 @@ The application is powered by CommerceTools 🌐, a leading provider of commerce
 - Clone the repository
 - Install dependencies: `npm install`
 - Start the project in dev mode: `npm run dev`
-- Builds the project for deployment: `npm run build`
+- Build the project for production: `npm run build`
 
 ## Contribution Guidelines
 
