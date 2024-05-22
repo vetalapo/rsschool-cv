@@ -1,0 +1,5 @@
+@import "./root.css";
+
+html {
+    overflow-y: auto;
+}
