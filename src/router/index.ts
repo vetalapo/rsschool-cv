@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from "vue-router";
 import RootView from "@/views/RootView.vue";
 import HomeView from "@/views/HomeView.vue";
 import AboutView from "@/views/AboutView.vue";
+import ProductsView from "@/views/ProductsView.vue";
+import CategoriesView from "@/views/CategoriesView.vue";
+import ContactsView from "@/views/ContactsView.vue";
 import LoginView from "@/views/LoginView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 import RegistrationView from "@/views/RegistrationView.vue";
@@ -21,24 +24,45 @@ const router = createRouter({
                     component: HomeView
                 },
                 {
+                    path: "/products",
+                    name: "products",
+                    component: ProductsView
+                },
+                {
+                    path: "/categories",
+                    name: "categories",
+                    component: CategoriesView
+                },
+                {
+                    path: "/contact",
+                    name: "contact",
+                    component: ContactsView
+                },
+                {
                     path: "/about",
                     name: "about",
                     component: AboutView
                 }
             ],
             meta: {
-                requiresAuth: true
+                requiresAuth: false
             }
         },
         {
             path: "/login",
             name: "login",
-            component: LoginView
+            component: LoginView,
+            meta: {
+                requiresNonLogin: true
+            }
         },
         {
             path: "/register",
             name: "registration",
-            component: RegistrationView
+            component: RegistrationView,
+            meta: {
+                requiresNonLogin: true
+            }
         },
         {
             path: "/:pathMatch(.*)*",
@@ -51,8 +75,8 @@ const router = createRouter({
 router.beforeEach((to) => {
     const authStore = useAuthStore();
 
-    if (to.meta.requiresAuth && !authStore.isAuthorized) {
-        return { name: "login" };
+    if (to.meta.requiresNonLogin && authStore.isAuthorized) {
+        return { name: "root" };
     }
 });
 

@@ -630,9 +630,7 @@ export async function registerUser(userRegisterData: RegisterUser): Promise<Cust
         throw new Error(CT_ERROR);
     }
 
-    const customer = await createCustomer(userForRegistration, bearerToken);
-
-    return customer;
+    return await createCustomer(userForRegistration, bearerToken);
 }
 
 export async function getProducts(

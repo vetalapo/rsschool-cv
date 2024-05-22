@@ -1,21 +1,45 @@
 <script lang="ts">
+    import type { RegisterUser, Credentials } from "@/types";
+    import { registerUser } from "@/services/commercetoolsApi";
     import { ValidationRules } from "@/utils/validationRules";
+    import { useAuthStore } from "@/store";
+
     export default {
         data: () => ({
             isPasswordVisible: false,
             form: false,
             menu: false,
-            birthDate: null,
-            firstName: "",
-            lastName: "",
-            streetName: "",
-            city: "",
-            email: "",
-            zip: "",
-            country: "",
-            password: "",
+            dateOfBirth: null,
+            registerUserModel: {
+                firstName: "",
+                lastName: "",
+                email: "",
+                password: "",
+                dateOfBirth: "1990-01-01",
+                shippingAddressStreet: "",
+                shippingAddressCity: "",
+                shippingAddressPostCode: "",
+                shippingAddressCountry: "",
+                isShippingAddressDefault: true,
+                billingAddressStreet: "",
+                billingAddressCity: "",
+                billingAddressPostCode: "",
+                billingAddressCountry: "",
+                isBillingAddressDefault: false
+            } as RegisterUser,
             loading: false,
             commonRules: ValidationRules,
+
+            countries: [
+                {
+                    title: "United Kingdom (UK)",
+                    code: "UK"
+                },
+                {
+                    title: "Germany (DE)",
+                    code: "DE"
+                }
+            ],
 
             rules: {
                 noSpecialChar: (value: string) => /^[a-zA-Z\s]*$/.test(value) || "No special characters allowed",
@@ -40,12 +64,49 @@
             }
         }),
         methods: {
-            onSubmit() {
+            async onSubmit() {
                 if (!this.form) {
                     return;
                 }
 
                 this.loading = true;
+
+                this.registerUserModel.billingAddressStreet = this.registerUserModel.shippingAddressStreet;
+                this.registerUserModel.billingAddressCity = this.registerUserModel.shippingAddressCity;
+                this.registerUserModel.billingAddressPostCode = this.registerUserModel.shippingAddressPostCode;
+                this.registerUserModel.billingAddressCountry = this.registerUserModel.shippingAddressCountry;
+                this.registerUserModel.isBillingAddressDefault = this.registerUserModel.isShippingAddressDefault;
+
+                console.clear()
+                console.table(this.registerUserModel);
+
+                try {
+                    await registerUser(this.registerUserModel);
+
+                    const credentials: Credentials = {
+                        email: this.registerUserModel.email,
+                        password: this.registerUserModel.password
+                    };
+
+                    const authStore = useAuthStore();
+
+                    try {
+                        const response = await authStore.logIn(credentials);
+
+                        if (response instanceof Error) {
+                            throw Error(response.message);
+                        }
+
+                        this.loading = false;
+                    } catch {
+                        setTimeout(() => {
+                            this.loading = false;
+                        }, 500);
+                    }
+
+                } catch(error) {
+                    console.error(error);
+                }
 
                 setTimeout(() => (this.loading = false), 3000);
             }
@@ -82,7 +143,7 @@
                         <v-row class="mb-1">
                             <v-col>
                                 <v-text-field
-                                    v-model="firstName"
+                                    v-model="registerUserModel.firstName"
                                     :rules="[
                                         commonRules.required,
                                         rules.noSpecialChar,
@@ -96,7 +157,7 @@
                             </v-col>
                             <v-col>
                                 <v-text-field
-                                    v-model="lastName"
+                                    v-model="registerUserModel.lastName"
                                     :rules="[
                                         commonRules.required,
                                         rules.noSpecialChar,
@@ -120,7 +181,7 @@
                         >
                             <template v-slot:activator="{ props }">
                                 <v-text-field
-                                    v-model="birthDate"
+                                    v-model="dateOfBirth"
                                     prepend-inner-icon="mdi-calendar"
                                     placeholder="Day of Birth"
                                     readonly
@@ -134,7 +195,7 @@
                             </template>
                             <v-date-picker
                                 ref="picker"
-                                v-model="birthDate"
+                                v-model="dateOfBirth"
                                 @input="menu = false"
                                 type="date"
                             >
@@ -144,7 +205,7 @@
                         <v-row class="mt-1">
                             <v-col>
                                 <v-text-field
-                                    v-model="streetName"
+                                    v-model="registerUserModel.shippingAddressStreet"
                                     :rules="[
                                         commonRules.required,
                                         commonRules.minLength(1, 'First name must be at least 1 character long')
@@ -158,7 +219,7 @@
                             </v-col>
                             <v-col>
                                 <v-text-field
-                                    v-model="city"
+                                    v-model="registerUserModel.shippingAddressCity"
                                     :rules="[
                                         commonRules.required,
                                         rules.noSpecialChar,
@@ -175,7 +236,7 @@
 
                     <v-text-field
                         class="mb-4"
-                        v-model="zip"
+                        v-model="registerUserModel.shippingAddressPostCode"
                         :rules="[commonRules.required, rules.zipCode]"
                         density="compact"
                         placeholder="Postal Code"
@@ -185,8 +246,11 @@
                     </v-text-field>
 
                     <v-select
-                        v-model="country"
-                        :items="['Germany (DE)', 'United States (US)']"
+                        v-model="registerUserModel.shippingAddressCountry"
+                        :items="countries"
+                        :item-props="true"
+                        item-title="title"
+                        item-value="code"
                         density="compact"
                         label="Select a country"
                         variant="outlined"
@@ -195,7 +259,7 @@
 
                     <v-text-field
                         class="mb-4"
-                        v-model="email"
+                        v-model="registerUserModel.email"
                         :rules="[commonRules.required, rules.email]"
                         density="compact"
                         placeholder="Email address"
@@ -207,7 +271,7 @@
 
                     <v-text-field
                         class="mb-5"
-                        v-model="password"
+                        v-model="registerUserModel.password"
                         :readonly="loading"
                         :rules="[
                             commonRules.required,

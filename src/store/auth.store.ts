@@ -53,7 +53,7 @@ export const useAuthStore = defineStore({
 
             localStorage.removeItem(localStorageUserItem);
 
-            router.push({ path: "/login" });
+            router.push({ path: "/" });
         }
     }
 });

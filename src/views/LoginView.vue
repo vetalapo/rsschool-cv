@@ -120,6 +120,7 @@
                     <v-divider />
 
                     <v-card-text class="text-center">
+                        <p>Don't have an account?</p>
                         <RouterLink class="text-blue text-decoration-none" to="/register">
                             Sign up now <v-icon icon="mdi-chevron-right"></v-icon>
                         </RouterLink>
