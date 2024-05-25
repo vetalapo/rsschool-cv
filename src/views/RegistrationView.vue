@@ -15,7 +15,7 @@
                 lastName: "",
                 email: "",
                 password: "",
-                dateOfBirth: "1990-01-01",
+                dateOfBirth: "",
                 shippingAddressStreet: "",
                 shippingAddressCity: "",
                 shippingAddressPostCode: "",
@@ -25,8 +25,9 @@
                 billingAddressCity: "",
                 billingAddressPostCode: "",
                 billingAddressCountry: "",
-                isBillingAddressDefault: false
+                isBillingAddressDefault: true
             } as RegisterUser,
+            isUsingShippingAddressAsBillingAlso: true,
             loading: false,
             commonRules: ValidationRules,
 
@@ -63,7 +64,25 @@
                 }
             }
         }),
+        computed: {
+            computedDateFormatted() {
+                return this.formatDate(this.dateOfBirth);
+            }
+        },
         methods: {
+            formatDate (date: Date | null) {
+                if (!date) {
+                    return "";
+                }
+
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, "0");
+
+                this.registerUserModel.dateOfBirth = `${year}-${month}-${day}`;
+
+                return `${year}/${month}/${day}`;
+            },
             async onSubmit() {
                 if (!this.form) {
                     return;
@@ -71,14 +90,13 @@
 
                 this.loading = true;
 
-                this.registerUserModel.billingAddressStreet = this.registerUserModel.shippingAddressStreet;
-                this.registerUserModel.billingAddressCity = this.registerUserModel.shippingAddressCity;
-                this.registerUserModel.billingAddressPostCode = this.registerUserModel.shippingAddressPostCode;
-                this.registerUserModel.billingAddressCountry = this.registerUserModel.shippingAddressCountry;
-                this.registerUserModel.isBillingAddressDefault = this.registerUserModel.isShippingAddressDefault;
-
-                console.clear()
-                console.table(this.registerUserModel);
+                if (this.isUsingShippingAddressAsBillingAlso) {
+                    this.registerUserModel.billingAddressStreet = this.registerUserModel.shippingAddressStreet;
+                    this.registerUserModel.billingAddressCity = this.registerUserModel.shippingAddressCity;
+                    this.registerUserModel.billingAddressPostCode = this.registerUserModel.shippingAddressPostCode;
+                    this.registerUserModel.billingAddressCountry = this.registerUserModel.shippingAddressCountry;
+                    this.registerUserModel.isBillingAddressDefault = this.registerUserModel.isShippingAddressDefault;
+                }
 
                 try {
                     await registerUser(this.registerUserModel);
@@ -114,42 +132,147 @@
     }
 </script>
 
-
 <template>
     <v-layout>
-        <v-main id="registration-container" class="d-sm-flex align-center justify-space-around ga-16">
+        <v-main id="registration-container" class="d-sm-flex align-center justify-space-around">
             <div class="text-container d-flex flex-column align-center text-center mb-8">
                 <h1 class="text-center">Join us<br>today!</h1>
                 <h2 class="text-center pa-4">Sign up to get access to exclusive features and benefits.</h2>
             </div>
-            <v-card
-                class="pa-12 pb-8"
-                elevation="8"
-                max-width="448"
-                rounded="lg"
-            >
-
+            <v-card class="pa-5 w-50" elevation="8" rounded="lg">
                 <v-form v-model="form" @submit.prevent="onSubmit">
-                    <div class="app-logo text-center d-sm-flex justify-center ga-5">
+                    <div class="app-logo text-center d-sm-flex justify-center ga-3">
                         <h2 class="brand">eCommerce</h2><span class="app">app</span>
                     </div>
 
-                    <div class="cta-form">
-                        <h3 class="text-center pa-6">Sign up to get goods <br><span>you love</span></h3>
+                    <div v-if="isUsingShippingAddressAsBillingAlso" class="cta-form mb-5">
+                        <h3 class="text-center">Sign up to get goods <br><span>you love</span></h3>
                     </div>
 
-                    <div class="text-subtitle-1 text-medium-emphasis">Registration</div>
+                    <v-row class="mt-3">
+                        <v-col>
+                            <v-text-field
+                                v-model="registerUserModel.firstName"
+                                :rules="[
+                                    commonRules.required,
+                                    rules.noSpecialChar,
+                                    commonRules.minLength(2, 'First name must be at least 2 character long')
+                                ]"
+                                density="compact"
+                                placeholder="First Name"
+                                variant="outlined"
+                                clearable
+                            >
+                            </v-text-field>
+                        </v-col>
+                        <v-col>
+                            <v-text-field
+                                v-model="registerUserModel.lastName"
+                                :rules="[
+                                    commonRules.required,
+                                    rules.noSpecialChar,
+                                    commonRules.minLength(2, 'Last name must be at least 2 character long')
+                                ]"
+                                density="compact"
+                                placeholder="Last Name"
+                                variant="outlined"
+                                clearable
+                            >
+                            </v-text-field>
+                        </v-col>
+                        <v-col>
+                            <v-menu
+                                v-model="menu"
+                                :close-on-content-click="false"
+                                :nudge-right="40"
+                                transition="scale-transition"
+                                offset-y
+                                min-width="290px"
+                            >
+                                <template v-slot:activator="{ props }">
+                                    <v-text-field
+                                        v-model="computedDateFormatted"
+                                        prepend-inner-icon="mdi-calendar"
+                                        placeholder="Day of Birth"
+                                        readonly
+                                        density="compact"
+                                        variant="outlined"
+                                        v-bind="props"
+                                        :rules="[commonRules.required, rules.ageLimit]"
+                                    >
+                                    </v-text-field>
+                                </template>
+                                <v-date-picker v-model="dateOfBirth">
+                                </v-date-picker>
+                            </v-menu>
+                        </v-col>
+                    </v-row>
 
-                        <v-row class="mb-1">
+                    <v-row class="mb-1">
+                        <v-col>
+                            <v-text-field
+                                v-model="registerUserModel.email"
+                                :rules="[commonRules.required, rules.email]"
+                                density="compact"
+                                placeholder="Email address"
+                                prepend-inner-icon="mdi-email-outline"
+                                variant="outlined"
+                                clearable
+                            >
+                            </v-text-field>
+                        </v-col>
+                        <v-col>
+                            <v-text-field
+                                v-model="registerUserModel.password"
+                                :readonly="loading"
+                                :rules="[
+                                    commonRules.required,
+                                    commonRules.minLength(8, 'Min 8 characters'),
+                                    commonRules.minOneDigit,
+                                    commonRules.minOneLowerCase,
+                                    commonRules.minOneUpperCase,
+                                    commonRules.minOneSpecialChar,
+                                    commonRules.noLeadingTrailingWhitespace
+                                ]"
+                                :append-inner-icon="isPasswordVisible ? 'mdi-eye-off' : 'mdi-eye'"
+                                :type="isPasswordVisible ? 'text' : 'password'"
+                                density="compact"
+                                placeholder="Password"
+                                prepend-inner-icon="mdi-lock-outline"
+                                variant="outlined"
+                                @click:append-inner="isPasswordVisible = !isPasswordVisible"
+                                clearable
+                            >
+                            </v-text-field>
+                        </v-col>
+                    </v-row>
+
+                    <fieldset class="pa-3 mb-5">
+                        <legend>Shipping Address</legend>
+                        <v-row class="mt-1">
+                            <v-col>
+                                <v-select
+                                    v-model="registerUserModel.shippingAddressCountry"
+                                    :items="countries"
+                                    :item-props="true"
+                                    item-title="title"
+                                    item-value="code"
+                                    density="compact"
+                                    label="Select a country"
+                                    variant="outlined"
+                                >
+                                </v-select>
+                            </v-col>
                             <v-col>
                                 <v-text-field
-                                    v-model="registerUserModel.firstName"
+                                    v-model="registerUserModel.shippingAddressCity"
                                     :rules="[
                                         commonRules.required,
                                         rules.noSpecialChar,
-                                        commonRules.minLength(1, 'First name must be at least 1 character long')]"
+                                        commonRules.minLength(2, 'City name must be at least 2 character long')
+                                    ]"
                                     density="compact"
-                                    placeholder="First Name"
+                                    placeholder="City"
                                     variant="outlined"
                                     clearable
                                 >
@@ -157,58 +280,24 @@
                             </v-col>
                             <v-col>
                                 <v-text-field
-                                    v-model="registerUserModel.lastName"
-                                    :rules="[
-                                        commonRules.required,
-                                        rules.noSpecialChar,
-                                        commonRules.minLength(1, 'First name must be at least 1 character long')]"
+                                    v-model="registerUserModel.shippingAddressPostCode"
+                                    :rules="[commonRules.required, rules.zipCode]"
                                     density="compact"
-                                    placeholder="Last Name"
+                                    placeholder="Postal Code"
                                     variant="outlined"
                                     clearable
                                 >
                                 </v-text-field>
                             </v-col>
                         </v-row>
-                        <v-menu
-                            ref="menu"
-                            v-model="menu"
-                            :close-on-content-click="false"
-                            :nudge-right="40"
-                            transition="scale-transition"
-                            offset-y
-                            min-width="290px"
-                        >
-                            <template v-slot:activator="{ props }">
-                                <v-text-field
-                                    v-model="dateOfBirth"
-                                    prepend-inner-icon="mdi-calendar"
-                                    placeholder="Day of Birth"
-                                    readonly
-                                    density="compact"
-                                    variant="outlined"
-                                    v-bind="props"
-                                    :rules="[commonRules.required, rules.ageLimit]"
-                                    @click="menu = true"
-                                >
-                                </v-text-field>
-                            </template>
-                            <v-date-picker
-                                ref="picker"
-                                v-model="dateOfBirth"
-                                @input="menu = false"
-                                type="date"
-                            >
-                            </v-date-picker>
-                        </v-menu>
 
-                        <v-row class="mt-1">
+                        <v-row>
                             <v-col>
                                 <v-text-field
                                     v-model="registerUserModel.shippingAddressStreet"
                                     :rules="[
                                         commonRules.required,
-                                        commonRules.minLength(1, 'First name must be at least 1 character long')
+                                        commonRules.minLength(2, 'Street name must be at least 2 character long')
                                     ]"
                                     density="compact"
                                     placeholder="Street"
@@ -218,12 +307,49 @@
                                 </v-text-field>
                             </v-col>
                             <v-col>
+                                <v-row>
+                                    <v-col>
+                                        <v-switch
+                                          v-model="registerUserModel.isShippingAddressDefault"
+                                          color="primary"
+                                          label="Set as default shipping address?"
+                                        ></v-switch>
+                                    </v-col>
+                                    <v-col>
+                                        <v-switch
+                                          v-model="isUsingShippingAddressAsBillingAlso"
+                                          color="orange-darken-3"
+                                          label="Use as billing address?"
+                                        ></v-switch>
+                                    </v-col>
+                                </v-row>
+                            </v-col>
+                        </v-row>
+                    </fieldset>
+
+                    <fieldset v-if="!isUsingShippingAddressAsBillingAlso" class="pa-3 mb-5">
+                        <legend>Billing Address</legend>
+                        <v-row class="mt-1">
+                            <v-col>
+                                <v-select
+                                    v-model="registerUserModel.billingAddressCountry"
+                                    :items="countries"
+                                    :item-props="true"
+                                    item-title="title"
+                                    item-value="code"
+                                    density="compact"
+                                    label="Select a country"
+                                    variant="outlined"
+                                >
+                                </v-select>
+                            </v-col>
+                            <v-col>
                                 <v-text-field
-                                    v-model="registerUserModel.shippingAddressCity"
+                                    v-model="registerUserModel.billingAddressCity"
                                     :rules="[
                                         commonRules.required,
                                         rules.noSpecialChar,
-                                        commonRules.minLength(1, 'First name must be at least 1 character long')
+                                        commonRules.minLength(2, 'City name must be at least 2 character long')
                                     ]"
                                     density="compact"
                                     placeholder="City"
@@ -232,66 +358,48 @@
                                 >
                                 </v-text-field>
                             </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="registerUserModel.billingAddressPostCode"
+                                    :rules="[commonRules.required, rules.zipCode]"
+                                    density="compact"
+                                    placeholder="Postal Code"
+                                    variant="outlined"
+                                    clearable
+                                >
+                                </v-text-field>
+                            </v-col>
                         </v-row>
 
-                    <v-text-field
-                        class="mb-4"
-                        v-model="registerUserModel.shippingAddressPostCode"
-                        :rules="[commonRules.required, rules.zipCode]"
-                        density="compact"
-                        placeholder="Postal Code"
-                        variant="outlined"
-                        clearable
-                    >
-                    </v-text-field>
+                        <v-row>
+                            <v-col>
+                                <v-text-field
+                                    v-model="registerUserModel.billingAddressStreet"
+                                    :rules="[
+                                        commonRules.required,
+                                        commonRules.minLength(2, 'Street name must be at least 2 character long')
+                                    ]"
+                                    density="compact"
+                                    placeholder="Street"
+                                    variant="outlined"
+                                    clearable
+                                >
+                                </v-text-field>
+                            </v-col>
+                            <v-col>
+                                <v-row>
+                                    <v-col>
+                                        <v-switch
+                                          v-model="registerUserModel.isBillingAddressDefault"
+                                          color="primary"
+                                          label="Set as default billing address?"
+                                        ></v-switch>
+                                    </v-col>
+                                </v-row>
+                            </v-col>
+                        </v-row>
+                    </fieldset>
 
-                    <v-select
-                        v-model="registerUserModel.shippingAddressCountry"
-                        :items="countries"
-                        :item-props="true"
-                        item-title="title"
-                        item-value="code"
-                        density="compact"
-                        label="Select a country"
-                        variant="outlined"
-                    >
-                    </v-select>
-
-                    <v-text-field
-                        class="mb-4"
-                        v-model="registerUserModel.email"
-                        :rules="[commonRules.required, rules.email]"
-                        density="compact"
-                        placeholder="Email address"
-                        prepend-inner-icon="mdi-email-outline"
-                        variant="outlined"
-                        clearable
-                    >
-                    </v-text-field>
-
-                    <v-text-field
-                        class="mb-5"
-                        v-model="registerUserModel.password"
-                        :readonly="loading"
-                        :rules="[
-                            commonRules.required,
-                            commonRules.minLength(8, 'Min 8 characters'),
-                            commonRules.minOneDigit,
-                            commonRules.minOneLowerCase,
-                            commonRules.minOneUpperCase,
-                            commonRules.minOneSpecialChar,
-                            commonRules.noLeadingTrailingWhitespace
-                        ]"
-                        :append-inner-icon="isPasswordVisible ? 'mdi-eye-off' : 'mdi-eye'"
-                        :type="isPasswordVisible ? 'text' : 'password'"
-                        density="compact"
-                        placeholder="Password"
-                        prepend-inner-icon="mdi-lock-outline"
-                        variant="outlined"
-                        @click:append-inner="isPasswordVisible = !isPasswordVisible"
-                        clearable
-                    >
-                    </v-text-field>
                     <v-btn
                         :disabled="!form"
                         :loading="loading"
@@ -308,7 +416,7 @@
                     <v-divider />
 
                     <v-card-text class="text-center">
-                        <p>Already have an account?</p>
+                        <p class="mb-1">Already have an account?</p>
                         <RouterLink class="text-blue text-decoration-none" to="/login">
                             Log in <v-icon icon="mdi-chevron-right"></v-icon>
                         </RouterLink>
