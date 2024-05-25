@@ -142,7 +142,7 @@ async function getUserByEmail(email: string, bearerToken: string): Promise<Custo
     }
 }
 
-const isUserExistCheckCache: IHash = {};
+export const isUserExistCheckCache: IHash = {};
 
 export async function isUserExistWithEmail(email: string): Promise<boolean> {
     if (isUserExistCheckCache[email] !== undefined) {

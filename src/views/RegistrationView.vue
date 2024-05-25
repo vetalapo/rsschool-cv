@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { RegisterUser, Credentials } from "@/types";
-    import { registerUser, isUserExistWithEmail } from "@/services/commercetoolsApi";
+    import { registerUser, isUserExistWithEmail, isUserExistCheckCache } from "@/services/commercetoolsApi";
     import { ValidationRules } from "@/utils/validationRules";
     import { useAuthStore } from "@/store";
 
@@ -115,6 +115,8 @@
                         email: this.registerUserModel.email,
                         password: this.registerUserModel.password
                     };
+
+                    isUserExistCheckCache[credentials.email] = true;
 
                     const authStore = useAuthStore();
 
