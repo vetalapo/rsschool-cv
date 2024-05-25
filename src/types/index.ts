@@ -72,6 +72,10 @@ type Credentials = {
     password: string;
 };
 
+interface IHash {
+    [key: string]: boolean;
+};
+
 type StateFields = {
     customer?: null | CustomerWithToken;
 };
@@ -210,6 +214,7 @@ export type {
     TokenResponse,
     Customer,
     Credentials,
+    IHash,
     CustomerWithToken,
     RegisterUser,
     CreateUser,

@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { RegisterUser, Credentials } from "@/types";
-    import { registerUser } from "@/services/commercetoolsApi";
+    import { registerUser, isUserExistWithEmail } from "@/services/commercetoolsApi";
     import { ValidationRules } from "@/utils/validationRules";
     import { useAuthStore } from "@/store";
 
@@ -29,6 +29,8 @@
             } as RegisterUser,
             isUsingShippingAddressAsBillingAlso: true,
             loading: false,
+            showErrorAlert: false,
+            errorAlertMessage: "",
             commonRules: ValidationRules,
 
             countries: [
@@ -46,6 +48,13 @@
                 noSpecialChar: (value: string) => /^[a-zA-Z\s]*$/.test(value) || "No special characters allowed",
                 email: (value: string) => /^[--9^-~A-Z!#-'*+=?]+@[a-z0-9A-Z](?:[a-z0-9A-Z-]{0,61}[a-z0-9A-Z]|)(?:\.[a-z0-9A-Z](?:[a-z0-9A-Z-]{0,61}[a-z0-9A-Z]|))*$/.test(value) || "Invalid Email address",
                 zipCode: (value: string) => /^\d{5}$/.test(value) || "Zip code must be 5 digits",
+                isEmailExist: async (value: string) => {
+                    if (!value) {
+                        return "Required";
+                    }
+
+                    return !(await isUserExistWithEmail(value)) || "There is already an existing customer with the provided email";
+                },
                 ageLimit: (value: string) => {
                     if (!value) {
                         return "Required";
@@ -65,12 +74,12 @@
             }
         }),
         computed: {
-            computedDateFormatted() {
+            computedDateFormatted(): string {
                 return this.formatDate(this.dateOfBirth);
             }
         },
         methods: {
-            formatDate (date: Date | null) {
+            formatDate (date: Date | null): string {
                 if (!date) {
                     return "";
                 }
@@ -89,6 +98,7 @@
                 }
 
                 this.loading = true;
+                this.showErrorAlert = false;
 
                 if (this.isUsingShippingAddressAsBillingAlso) {
                     this.registerUserModel.billingAddressStreet = this.registerUserModel.shippingAddressStreet;
@@ -112,7 +122,7 @@
                         const response = await authStore.logIn(credentials);
 
                         if (response instanceof Error) {
-                            throw Error(response.message);
+                            throw new Error(response.message);
                         }
 
                         this.loading = false;
@@ -123,7 +133,8 @@
                     }
 
                 } catch(error) {
-                    console.error(error);
+                    this.showErrorAlert = true;
+                    this.errorAlertMessage = String(error);
                 }
 
                 setTimeout(() => (this.loading = false), 3000);
@@ -212,7 +223,11 @@
                         <v-col>
                             <v-text-field
                                 v-model="registerUserModel.email"
-                                :rules="[commonRules.required, rules.email]"
+                                :rules="[
+                                    commonRules.required,
+                                    rules.email,
+                                    rules.isEmailExist
+                                ]"
                                 density="compact"
                                 placeholder="Email address"
                                 prepend-inner-icon="mdi-email-outline"
@@ -412,6 +427,16 @@
                     >
                         Create an account
                     </v-btn>
+
+                    <v-alert
+                      v-if="showErrorAlert"
+                      border="top"
+                      type="error"
+                      variant="outlined"
+                      prominent
+                    >
+                        {{ errorAlertMessage }}
+                    </v-alert>
 
                     <v-divider />
 

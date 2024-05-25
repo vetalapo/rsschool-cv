@@ -22,7 +22,8 @@ import type {
     ProductAllData,
     ProductApiResponse,
     Cart,
-    CartAPI
+    CartAPI,
+    IHash
 } from "../types";
 
 import { PRODUCTS_ON_PAGE, MAX_PRICE_FILTER } from "../constants";
@@ -138,6 +139,42 @@ async function getUserByEmail(email: string, bearerToken: string): Promise<Custo
         return responseData.results[0];
     } catch (error) {
         return null;
+    }
+}
+
+const isUserExistCheckCache: IHash = {};
+
+export async function isUserExistWithEmail(email: string): Promise<boolean> {
+    if (isUserExistCheckCache[email] !== undefined) {
+        return isUserExistCheckCache[email];
+    }
+
+    const bearerToken = await fetchBearerToken();
+
+    if (bearerToken === null) {
+        throw new Error(CT_ERROR);
+    }
+
+    try {
+        const response = await getUserByEmail(email, bearerToken);
+
+        if (response instanceof Error) {
+            throw new Error(response.message);
+        }
+
+        if (response === null) {
+            isUserExistCheckCache[email] = false;
+
+            return false;
+        }
+
+        isUserExistCheckCache[email] = true;
+
+        return true;
+    } catch (error) {
+        isUserExistCheckCache[email] = false;
+
+        return false;
     }
 }
 
