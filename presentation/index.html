@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>RS School Presentation</title>
+        <link rel="stylesheet" href="revealjs-dist/reset.css">
+        <link rel="stylesheet" href="revealjs-dist/reveal.css">
+        <link rel="stylesheet" href="revealjs-dist/theme/black.css">
+        <link rel="stylesheet" href="plugin/highlight/monokai.css">
+        <style>
+            h2 {
+                color: orange!important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <!-- Slide 0 -->
+                <section>
+                    <a href="https://rs.school/" target="_blank">
+                        <img src="./images/000_RsBanner.svg" alt="reveal.js logo" style="height: 180px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+                    </a>
+                    <h2>The Development of Programming Languages</h2>
+                    <p>A Brief Synopsis</p>
+                    <p>
+                        <small>Created by <a href="http://github.com/vetalapo" target="_blank">Vitaly Dushkin</a></small>
+                    </p>
+                </section>
+
+                <!-- Slide 1 -->
+                <section>
+                    <h2>Banu Musa's Flute Player</h2>
+                    <p>about 850</p>
+                    <img src="./images/001_b-musa-automata-flute.png" alt="Banu Musa's flute player" />
+                </section>
+
+                <!-- Slide 2 -->
+                <section>
+                    <h2>early 1800's</h2>
+                    <img src="./images/002_jacquard-loom_auto-piano-player.png" alt="Jacquard Loom and Auto Piano Players" />
+                </section>
+
+                <!-- Slide 3 -->
+                <section>
+                    <h2>Analytical Engine</h2>
+                    <p>1830's</p>
+                    <img src="./images/003_analytical-engine.png" alt="Analytical Engine" />
+                </section>
+
+                <!-- Slide 4 -->
+                <section>
+                    <h2>Bernoulli Numbers</h2>
+                    <img src="./images/004_note-g_first-program.png" alt="Bernoulli numbers">
+                </section>
+
+                <!-- Slide 5 -->
+                <section>
+                    <h2>Herman Hollerith</h2>
+                    <p>1890's</p>
+                    <img src="./images/005_herman-hollerith.png" alt="Herman Hollerith" />
+                </section>
+
+                <!-- Slide 6 -->
+                <section>
+                    <h2>Electronic Computers</h2>
+                    <p>1940's</p>
+                    <img style="margin: 0 auto" src="./images/006_ENIAC.png" alt="ENIAC" />
+                    <small>ENIAC</small>
+                </section>
+
+                <!-- Slide 7 -->
+                <section>
+                    <h2 style="font-size: 50px;">Machine Code & Assembly Languages</h2>
+                    <pre>
+                        <code class="hljs html">   01001000 01100101                   DATA SEGMENT
+   01101100 01101100                     MSG DB "HELLO, WORLD!$"
+   01101111 00100000                   DATA ENDS
+   01010111 01101111                   CODE SEGMENT
+   01110010 01101100                     ASSUME CS:CODE,DS:DAT
+   01100100                            START:
+                                         MOV AX,DATA
+                                         MOV DS,AX
+                                         MOV DX,OFFSET MSG
+                                         INT 21H
+                                         MOV AH,4CH
+                                         INT 21H
+                                       CODE ENDS
+                                       END START</code>
+                    </pre>
+                </section>
+
+                <!-- Slide 8 -->
+                <section>
+                    <h2>High Level Programming</h2>
+                    <p>Plankalkül</p>
+                    <img style="background-color: black;" src="./images/007_plankul.png" alt="Plankul example">
+                    <p>usability > optimal efficiency</p>
+                    <p>interpreted & compiled</p>
+                </section>
+
+                <!-- Slide 9 -->
+                <section>
+                    <h2>Programming Paradigm</h2>
+                    <img src="./images/008_programming-paradigm.png" alt="Programming Paradigm classification" />
+                </section>
+
+                <!-- Slide 10 -->
+                <section>
+                    <h2>Imperative Programming</h2>
+                    <img src="./images/009_fortran-statement.png" alt="Fortran Statement card" />
+                    <p>Describes Operation</p>
+                </section>
+
+                <!-- Slide 11 -->
+                <section>
+                    <h2>Declarative Programming</h2>
+                    <pre>
+                        <p>SQL Code:</p>
+                        <code>SELECT employee_id, first_name, last_name, hire_date
+FROM employees
+WHERE department = 'Sales'
+  AND status = 'Active'
+ORDER BY hire_date DESC;</code>
+                    </pre>
+                    <p style="color: red;">Problem > Solution</p>
+                </section>
+
+                <!-- Slide 12 -->
+                <section>
+                    <h2>Functional Programming</h2>
+                    <pre>
+                        <code>primes = 2 :
+    [ c | (ps, p) <- zip (inits primes) primes,  
+    c <- take 1 [c | c <- [p+1..], 
+    and [mod c p > 0 | p <- ps]]]</code>
+                    </pre>
+                    <ul>
+                        <li>Declarative</li>
+                        <li>Academia</li>
+                        <li>Output from input</li>
+                    </ul>
+                </section>
+
+                <!-- Slide 13 -->
+                <section>
+                    <h2>Object Oriented</h2>
+                    <p style="margin: 0; color: red; letter-spacing: 20px; font-weight: bold; font-size: 70px;"><strong>{.......}</strong></p>
+                    <ul>
+                        <li>attributes</li>
+                        <li>methods</li>
+                        <li>modification</li>
+                    </ul>
+                </section>
+
+                <!-- Slide 14 -->
+                <section>
+                    <h2 style="color: white!important">Thank you!</h2>
+                </section>
+            </div>
+        </div>
+
+        <script src="revealjs-dist/reveal.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script>
+            // More info about initialization & config:
+            // - https://revealjs.com/initialization/
+            // - https://revealjs.com/config/
+            Reveal.initialize({
+                hash: true,
+
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+            });
+        </script>
+    </body>
+</html>
