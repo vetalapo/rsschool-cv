@@ -1,8 +1,10 @@
 <script lang="ts">
-    import type { RegisterUser, Credentials } from "@/types";
+    import type { RegisterUser, Credentials, DateOfBirthFormat } from "@/types";
     import { registerUser, isUserExistWithEmail, isUserExistCheckCache } from "@/services/commercetoolsApi";
     import { ValidationRules } from "@/utils/validationRules";
     import { useAuthStore } from "@/store";
+    import { COUNTRIES } from "@/constants";
+    import { formatDateOfBirth } from "@/utils/formatDateOfBirth";
 
     export default {
         data: () => ({
@@ -27,49 +29,21 @@
                 billingAddressCountry: "",
                 isBillingAddressDefault: true
             } as RegisterUser,
+
             isUsingShippingAddressAsBillingAlso: true,
             loading: false,
             showErrorAlert: false,
             errorAlertMessage: "",
             commonRules: ValidationRules,
-
-            countries: [
-                {
-                    title: "United Kingdom (UK)",
-                    code: "UK"
-                },
-                {
-                    title: "Germany (DE)",
-                    code: "DE"
-                }
-            ],
+            countries: COUNTRIES,
 
             rules: {
-                noSpecialChar: (value: string) => /^[a-zA-Z\s]*$/.test(value) || "No special characters allowed",
-                email: (value: string) => /^[--9^-~A-Z!#-'*+=?]+@[a-z0-9A-Z](?:[a-z0-9A-Z-]{0,61}[a-z0-9A-Z]|)(?:\.[a-z0-9A-Z](?:[a-z0-9A-Z-]{0,61}[a-z0-9A-Z]|))*$/.test(value) || "Invalid Email address",
-                zipCode: (value: string) => /^\d{5}$/.test(value) || "Zip code must be 5 digits",
                 isEmailExist: async (value: string) => {
                     if (!value) {
                         return "Required";
                     }
 
                     return !(await isUserExistWithEmail(value)) || "There is already an existing customer with the provided email";
-                },
-                ageLimit: (value: string) => {
-                    if (!value) {
-                        return "Required";
-                    }
-
-                    const today = new Date();
-                    const birthDate = new Date(value);
-                    let age = today.getFullYear() - birthDate.getFullYear();
-                    const monthDifference = today.getMonth() - birthDate.getMonth();
-
-                    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
-                        age--;
-                    }
-
-                    return age >= 13 || "You must be at least 13 years old.";
                 }
             }
         }),
@@ -80,17 +54,11 @@
         },
         methods: {
             formatDate (date: Date | null): string {
-                if (!date) {
-                    return "";
-                }
+                const formattedDateOfBirth: DateOfBirthFormat = formatDateOfBirth(date);
 
-                const year = date.getFullYear();
-                const month = String(date.getMonth() + 1).padStart(2, '0');
-                const day = String(date.getDate()).padStart(2, "0");
+                this.registerUserModel.dateOfBirth = formattedDateOfBirth.serviceFormat;
 
-                this.registerUserModel.dateOfBirth = `${year}-${month}-${day}`;
-
-                return `${year}/${month}/${day}`;
+                return formattedDateOfBirth.uiFormat;
             },
             async onSubmit() {
                 if (!this.form) {
@@ -142,7 +110,7 @@
                 setTimeout(() => (this.loading = false), 3000);
             }
         }
-    }
+    };
 </script>
 
 <template>
@@ -168,7 +136,7 @@
                                 v-model="registerUserModel.firstName"
                                 :rules="[
                                     commonRules.required,
-                                    rules.noSpecialChar,
+                                    commonRules.noSpecialChar,
                                     commonRules.minLength(2, 'First name must be at least 2 character long')
                                 ]"
                                 density="compact"
@@ -183,7 +151,7 @@
                                 v-model="registerUserModel.lastName"
                                 :rules="[
                                     commonRules.required,
-                                    rules.noSpecialChar,
+                                    commonRules.noSpecialChar,
                                     commonRules.minLength(2, 'Last name must be at least 2 character long')
                                 ]"
                                 density="compact"
@@ -211,12 +179,11 @@
                                         density="compact"
                                         variant="outlined"
                                         v-bind="props"
-                                        :rules="[commonRules.required, rules.ageLimit]"
+                                        :rules="[commonRules.required, commonRules.ageLimit]"
                                     >
                                     </v-text-field>
                                 </template>
-                                <v-date-picker v-model="dateOfBirth">
-                                </v-date-picker>
+                                <v-date-picker v-model="dateOfBirth"></v-date-picker>
                             </v-menu>
                         </v-col>
                     </v-row>
@@ -227,8 +194,10 @@
                                 v-model="registerUserModel.email"
                                 :rules="[
                                     commonRules.required,
-                                    rules.email,
-                                    rules.isEmailExist
+                                    commonRules.isProperEmail,
+                                    commonRules.isEmailWithDomain,
+                                    commonRules.noLeadingTrailingWhitespace,
+                                    commonRules.isEmailProperlyFormatted
                                 ]"
                                 density="compact"
                                 placeholder="Email address"
@@ -285,7 +254,7 @@
                                     v-model="registerUserModel.shippingAddressCity"
                                     :rules="[
                                         commonRules.required,
-                                        rules.noSpecialChar,
+                                        commonRules.noSpecialChar,
                                         commonRules.minLength(2, 'City name must be at least 2 character long')
                                     ]"
                                     density="compact"
@@ -298,7 +267,7 @@
                             <v-col>
                                 <v-text-field
                                     v-model="registerUserModel.shippingAddressPostCode"
-                                    :rules="[commonRules.required, rules.zipCode]"
+                                    :rules="[commonRules.required, commonRules.zipCodeContainsFiveDigits]"
                                     density="compact"
                                     placeholder="Postal Code"
                                     variant="outlined"
@@ -327,16 +296,16 @@
                                 <v-row>
                                     <v-col>
                                         <v-switch
-                                          v-model="registerUserModel.isShippingAddressDefault"
-                                          color="primary"
-                                          label="Set as default shipping address?"
+                                            v-model="registerUserModel.isShippingAddressDefault"
+                                            color="primary"
+                                            label="Set as default shipping address?"
                                         ></v-switch>
                                     </v-col>
                                     <v-col>
                                         <v-switch
-                                          v-model="isUsingShippingAddressAsBillingAlso"
-                                          color="orange-darken-3"
-                                          label="Use as billing address?"
+                                            v-model="isUsingShippingAddressAsBillingAlso"
+                                            color="orange-darken-3"
+                                            label="Use as billing address?"
                                         ></v-switch>
                                     </v-col>
                                 </v-row>
@@ -365,7 +334,7 @@
                                     v-model="registerUserModel.billingAddressCity"
                                     :rules="[
                                         commonRules.required,
-                                        rules.noSpecialChar,
+                                        commonRules.noSpecialChar,
                                         commonRules.minLength(2, 'City name must be at least 2 character long')
                                     ]"
                                     density="compact"
@@ -378,7 +347,7 @@
                             <v-col>
                                 <v-text-field
                                     v-model="registerUserModel.billingAddressPostCode"
-                                    :rules="[commonRules.required, rules.zipCode]"
+                                    :rules="[commonRules.required, commonRules.zipCodeContainsFiveDigits]"
                                     density="compact"
                                     placeholder="Postal Code"
                                     variant="outlined"

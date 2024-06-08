@@ -54,6 +54,23 @@ export const useAuthStore = defineStore({
             localStorage.removeItem(localStorageUserItem);
 
             router.push({ path: "/" });
+        },
+        async isValidCredentials(credentials: Credentials) {
+            try {
+                const userResponse: CustomerWithToken | Error = await getUser(credentials);
+
+                if (userResponse instanceof Error) {
+                    throw Error(userResponse.message);
+                }
+
+                return userResponse.user?.email === credentials.email;
+            } catch {
+                return false;
+            }
+        },
+        updateUserData(userData: CustomerWithToken) {
+            this.user = userData;
+            localStorage.setItem(localStorageUserItem, JSON.stringify(userData));
         }
     }
 });

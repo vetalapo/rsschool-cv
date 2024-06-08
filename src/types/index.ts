@@ -1,3 +1,11 @@
+import type { RouteLocationRaw } from "vue-router";
+
+interface BreadcrumbItem {
+    title: string;
+    disabled: boolean;
+    to: RouteLocationRaw;
+}
+
 type Address = {
     readonly id?: string;
     streetName: string;
@@ -5,6 +13,27 @@ type Address = {
     postalCode: string;
     country: string;
 };
+
+type FullCustomerAddress = {
+    id: string;
+    firstName: string;
+    lastName: string;
+    city: string;
+    country: string;
+    postalCode: string;
+    state: string;
+    streetName: string;
+    streetNumber: string;
+}
+
+type AddressType = {
+    isShipping: boolean;
+    isShippingAddressDefault: boolean;
+    isBilling: boolean;
+    isBillingAddressDefault: boolean;
+};
+
+type FullCustomerAddressModel = FullCustomerAddress & AddressType;
 
 type RegisterUser = {
     firstName: string;
@@ -72,9 +101,14 @@ type Credentials = {
     password: string;
 };
 
-interface IHash {
-    [key: string]: boolean;
+interface Dictionary<T> {
+    [key: string]: T;
 };
+
+interface DateOfBirthFormat {
+    serviceFormat: string,
+    uiFormat: string
+}
 
 type StateFields = {
     customer?: null | CustomerWithToken;
@@ -90,8 +124,8 @@ type Category = {
 
 type ProductAllData = {
     id: string;
-    name: string;
-    description: string;
+    name: Dictionary<string>;
+    description: Dictionary<string>;
     categories: string[];
     slug: string;
     masterVariant: {
@@ -123,6 +157,42 @@ type ProductAllData = {
         }[];
     };
 };
+
+interface ProductSingle {
+    id: string;
+    version: number;
+    masterData: {
+        current: {
+            name: {
+                "en-GB": string;
+            };
+            description: {
+                "en-GB": string;
+            };
+            masterVariant: {
+                prices: {
+                    value: {
+                        currencyCode: string;
+                        centAmount: number;
+                    },
+                    discounted: {
+                        value: {
+                            currencyCode: string;
+                            centAmount: number;
+                        }
+                    }
+                }[];
+                images: {
+                    url: string;
+                    dimensions: {
+                        w: number;
+                        h: number;
+                    }
+                }[];
+            };
+        }
+    }
+}
 
 type ProductApiResponse = {
     total: number;
@@ -209,19 +279,31 @@ type CartAPI = {
     results: Cart[];
 };
 
+interface SelectOption {
+    title: string;
+    value: string;
+}
+
 export type {
+    BreadcrumbItem,
     Address,
+    FullCustomerAddress,
+    AddressType,
+    FullCustomerAddressModel,
     TokenResponse,
     Customer,
     Credentials,
-    IHash,
+    DateOfBirthFormat,
+    Dictionary,
     CustomerWithToken,
     RegisterUser,
     CreateUser,
     StateFields,
     Category,
     ProductAllData,
+    ProductSingle,
     ProductApiResponse,
     Cart,
-    CartAPI
+    CartAPI,
+    SelectOption
 };

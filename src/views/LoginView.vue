@@ -63,13 +63,14 @@
                             commonValidationRules.isProperEmail,
                             commonValidationRules.isEmailWithDomain,
                             commonValidationRules.noLeadingTrailingWhitespace,
-                            commonValidationRules.isProperlyFormatted
+                            commonValidationRules.isEmailProperlyFormatted
                         ]"
                         density="compact"
                         placeholder="Email address"
                         prepend-inner-icon="mdi-email-outline"
                         variant="outlined"
                         clearable
+                        data-test="email"
                     >
                     </v-text-field>
 
@@ -94,10 +95,17 @@
                         variant="outlined"
                         @click:append-inner="isPasswordVisible = !isPasswordVisible"
                         clearable
+                        data-test="password"
                     >
                     </v-text-field>
 
-                    <v-card v-if="isLoginError" class="mb-10 text-center" color="surface-variant" variant="tonal">
+                    <v-card
+                        v-if="isLoginError"
+                        class="mb-10 text-center"
+                        color="surface-variant"
+                        variant="tonal"
+                        data-test="wrong-password"
+                    >
                         <v-card-text class="text-medium-emphasis text-error font-weight-bold">
                             Your password is incorrect or this account doesn't exist.
                             Please verify and try to log in again!

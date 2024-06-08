@@ -8,9 +8,9 @@ name: Node.js Sprint Release Tests CI
 
 on:
     push:
-        branches: [ "release/login-registration-main" ]
+        branches: [ "release/catalog-product-profile" ]
     pull_request:
-        branches: [ "release/login-registration-main" ]
+        branches: [ "release/catalog-product-profile" ]
 
 jobs:
     build-test:
