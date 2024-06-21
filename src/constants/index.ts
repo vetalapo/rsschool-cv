@@ -1,28 +1,7 @@
 const LOCALSTORAGE_NAME = "rss-ecommerce";
 
 const PRODUCTS_ON_PAGE = 20;
-
-const SORT_OPTIONS = [
-    { value: "default", label: "Default sort", ctSort: "" },
-    { value: "priceAsc", label: "Ascending price", ctSort: "price asc" },
-    { value: "priceDesc", label: "Descending price", ctSort: "price desc" },
-    { value: "nameAsc", label: "By Name (A-Z)", ctSort: "name.com asc" },
-    { value: "nameDesc", label: "By Name (Z-A)", ctSort: "name.com desc" }
-];
-
-const BRANDS = [
-    "Samsung",
-    "Apple",
-    "Bosch",
-    "Panasonic",
-    "Lenovo"
-];
-
-const COLORS: Record<string, string> = {
-    black: "Black",
-    white: "White",
-    blue: "Blue"
-};
+const MAX_PRICE_FILTER = 100000;
 
 const COUNTRIES = [
     {
@@ -39,14 +18,17 @@ const COUNTRIES = [
     }
 ];
 
-const MAX_PRICE_FILTER = 100000;
+const PROMOCODES = {
+    "b5dcb74b-e9f7-405a-93c2-7fed70529e47": {
+        code: "TERNION24",
+        description: "25% off every cart item"
+    }
+}
 
 export {
     LOCALSTORAGE_NAME,
     PRODUCTS_ON_PAGE,
-    SORT_OPTIONS,
-    BRANDS,
-    COLORS,
     MAX_PRICE_FILTER,
+    PROMOCODES,
     COUNTRIES
 };

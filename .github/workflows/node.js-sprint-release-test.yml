@@ -8,9 +8,9 @@ name: Node.js Sprint Release Tests CI
 
 on:
     push:
-        branches: [ "release/catalog-product-profile" ]
+        branches: [ "release/basket-about_us" ]
     pull_request:
-        branches: [ "release/catalog-product-profile" ]
+        branches: [ "release/basket-about_us" ]
 
 jobs:
     build-test:

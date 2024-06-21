@@ -116,10 +116,13 @@ type StateFields = {
 
 type Category = {
     id: number;
-    title: string;
+    name: Dictionary<string>;
     url: string;
     parentId: number | null;
     ctId: string | null;
+    path?: Category[];
+    image: string;
+    active: boolean;
 };
 
 type ProductAllData = {
@@ -146,6 +149,7 @@ type ProductAllData = {
         prices: {
             value: {
                 centAmount: number;
+                currencyCode: string;
             };
             discounted: {
                 value: {
@@ -202,7 +206,11 @@ type ProductApiResponse = {
 interface LineItem {
     id: string;
     productId: string;
-    name: string;
+    name: {
+        "en-US": string,
+        "en-GB": string,
+        "de-DE": string
+    };
     price: {
         value: {
             centAmount: number;
@@ -284,6 +292,12 @@ interface SelectOption {
     value: string;
 }
 
+interface Slide {
+    title: string;
+    description: string;
+    image: string;
+}
+
 export type {
     BreadcrumbItem,
     Address,
@@ -305,5 +319,6 @@ export type {
     ProductApiResponse,
     Cart,
     CartAPI,
-    SelectOption
+    SelectOption,
+    Slide
 };

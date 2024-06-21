@@ -120,9 +120,9 @@
                 <h1 class="text-center">Join us<br>today!</h1>
                 <h2 class="text-center pa-4">Sign up to get access to exclusive features and benefits.</h2>
             </div>
-            <v-card class="pa-5 w-50" elevation="8" rounded="lg">
+            <v-card class="pa-5 w-100 w-md-75 w-lg-50" elevation="8" rounded="lg">
                 <v-form v-model="form" @submit.prevent="onSubmit">
-                    <div class="app-logo text-center d-sm-flex justify-center ga-3">
+                    <div class="app-logo text-center d-sm-flex justify-center ga-3 mb-5">
                         <h2 class="brand">eCommerce</h2><span class="app">app</span>
                     </div>
 
@@ -131,7 +131,7 @@
                     </div>
 
                     <v-row class="mt-3">
-                        <v-col>
+                        <v-col cols="12" md="6">
                             <v-text-field
                                 v-model="registerUserModel.firstName"
                                 :rules="[
@@ -146,7 +146,7 @@
                             >
                             </v-text-field>
                         </v-col>
-                        <v-col>
+                        <v-col cols="12" md="6">
                             <v-text-field
                                 v-model="registerUserModel.lastName"
                                 :rules="[
@@ -161,7 +161,9 @@
                             >
                             </v-text-field>
                         </v-col>
-                        <v-col>
+                    </v-row>
+                    <v-row class="mt-3">
+                        <v-col cols="12" md="6">
                             <v-menu
                                 v-model="menu"
                                 :close-on-content-click="false"
@@ -186,10 +188,7 @@
                                 <v-date-picker v-model="dateOfBirth"></v-date-picker>
                             </v-menu>
                         </v-col>
-                    </v-row>
-
-                    <v-row class="mb-1">
-                        <v-col>
+                        <v-col cols="12" md="6">
                             <v-text-field
                                 v-model="registerUserModel.email"
                                 :rules="[
@@ -207,7 +206,9 @@
                             >
                             </v-text-field>
                         </v-col>
-                        <v-col>
+                    </v-row>
+                    <v-row class="mt-3">
+                        <v-col cols="12" md="6">
                             <v-text-field
                                 v-model="registerUserModel.password"
                                 :readonly="loading"
@@ -236,7 +237,7 @@
                     <fieldset class="pa-3 mb-5">
                         <legend>Shipping Address</legend>
                         <v-row class="mt-1">
-                            <v-col>
+                            <v-col cols="12" md="6">
                                 <v-select
                                     v-model="registerUserModel.shippingAddressCountry"
                                     :items="countries"
@@ -249,7 +250,7 @@
                                 >
                                 </v-select>
                             </v-col>
-                            <v-col>
+                            <v-col cols="12" md="6">
                                 <v-text-field
                                     v-model="registerUserModel.shippingAddressCity"
                                     :rules="[
@@ -264,7 +265,7 @@
                                 >
                                 </v-text-field>
                             </v-col>
-                            <v-col>
+                            <v-col cols="12" md="6">
                                 <v-text-field
                                     v-model="registerUserModel.shippingAddressPostCode"
                                     :rules="[commonRules.required, commonRules.zipCodeContainsFiveDigits]"
@@ -277,8 +278,8 @@
                             </v-col>
                         </v-row>
 
-                        <v-row>
-                            <v-col>
+                        <v-row class="mt-3">
+                            <v-col cols="12">
                                 <v-text-field
                                     v-model="registerUserModel.shippingAddressStreet"
                                     :rules="[
@@ -292,16 +293,16 @@
                                 >
                                 </v-text-field>
                             </v-col>
-                            <v-col>
+                            <v-col cols="12">
                                 <v-row>
-                                    <v-col>
+                                    <v-col cols="12" md="6">
                                         <v-switch
                                             v-model="registerUserModel.isShippingAddressDefault"
                                             color="primary"
                                             label="Set as default shipping address?"
                                         ></v-switch>
                                     </v-col>
-                                    <v-col>
+                                    <v-col cols="12" md="6">
                                         <v-switch
                                             v-model="isUsingShippingAddressAsBillingAlso"
                                             color="orange-darken-3"
@@ -316,7 +317,7 @@
                     <fieldset v-if="!isUsingShippingAddressAsBillingAlso" class="pa-3 mb-5">
                         <legend>Billing Address</legend>
                         <v-row class="mt-1">
-                            <v-col>
+                            <v-col cols="12" md="6">
                                 <v-select
                                     v-model="registerUserModel.billingAddressCountry"
                                     :items="countries"
@@ -329,7 +330,7 @@
                                 >
                                 </v-select>
                             </v-col>
-                            <v-col>
+                            <v-col cols="12" md="6">
                                 <v-text-field
                                     v-model="registerUserModel.billingAddressCity"
                                     :rules="[
@@ -344,7 +345,7 @@
                                 >
                                 </v-text-field>
                             </v-col>
-                            <v-col>
+                            <v-col cols="12" md="6">
                                 <v-text-field
                                     v-model="registerUserModel.billingAddressPostCode"
                                     :rules="[commonRules.required, commonRules.zipCodeContainsFiveDigits]"
@@ -357,8 +358,8 @@
                             </v-col>
                         </v-row>
 
-                        <v-row>
-                            <v-col>
+                        <v-row class="mt-3">
+                            <v-col cols="12">
                                 <v-text-field
                                     v-model="registerUserModel.billingAddressStreet"
                                     :rules="[
@@ -372,9 +373,9 @@
                                 >
                                 </v-text-field>
                             </v-col>
-                            <v-col>
+                            <v-col cols="12">
                                 <v-row>
-                                    <v-col>
+                                    <v-col cols="12">
                                         <v-switch
                                           v-model="registerUserModel.isBillingAddressDefault"
                                           color="primary"
@@ -429,28 +430,35 @@
             linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
             url("../assets/img/eCommerce-registration.svg") left no-repeat,
             url("../assets/img/backgroundRegistration.png") center / cover no-repeat;
+            padding: 20px;
     }
 
     h1 {
-        font-size: 96px;
+        font-size: 48px;
         font-family: Poppins;
         font-weight: 300;
-        line-height: 144px;
+        line-height: 72px;
+    }
+
+    h2 {
+        font-size: 24px;
     }
 
     .app-logo .brand {
         font-family: Prata;
-        font-size: 40px;
+        font-size: 28px;
         font-weight: 400;
     }
 
     .app-logo .app {
         font-family: Poppins;
         transform: rotate(-90deg);
+        font-size: 16px;
     }
 
     .cta-form h3 {
-        color: #099A9A;
+        color: #099a9a;
+        font-size: 20px;
     }
 
     .cta-form span {
@@ -458,6 +466,36 @@
     }
 
     .text-container h2 {
-        color: #099A9A;
+        color: #099a9a;
+    }
+
+    @media (min-width: 600px) {
+        h1 {
+            font-size: 72px;
+            line-height: 96px;
+        }
+
+        .app-logo .brand {
+            font-size: 40px;
+        }
+
+        .cta-form h3 {
+            font-size: 24px;
+        }
+    }
+
+    @media (min-width: 960px) {
+        h1 {
+            font-size: 96px;
+            line-height: 144px;
+        }
+
+        .app-logo .brand {
+            font-size: 40px;
+        }
+
+        .cta-form h3 {
+            font-size: 28px;
+        }
     }
 </style>

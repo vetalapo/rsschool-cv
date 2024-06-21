@@ -1,28 +1,18 @@
 import type { Credentials, CustomerWithToken } from "@/types";
+import { LOCALSTORAGE_NAME } from "@/constants";
 import { defineStore } from "pinia";
-import { getUser } from "@/services/commercetoolsApi";
+import { getRefreshedToken, getUser } from "@/services/commercetoolsApi";
 import router from "@/router";
 
-const localStorageUserItem = "eCommerceLoggedInUser";
-
 const getLocalStorageUserData = (): CustomerWithToken | null =>
-    JSON.parse(localStorage.getItem(localStorageUserItem) || "{}");
+    JSON.parse(localStorage.getItem(LOCALSTORAGE_NAME) || "{}");
 
 const userData = getLocalStorageUserData();
-
-const hasTokenStored = (): boolean => {
-    if (userData?.token) {
-        return true;
-    }
-
-    return false;
-};
 
 export const useAuthStore = defineStore({
     id: "auth",
     state: () => ({
-        user: userData,
-        isAuthorized: hasTokenStored()
+        user: userData
     }),
     actions: {
         async logIn(credentials: Credentials) {
@@ -33,27 +23,24 @@ export const useAuthStore = defineStore({
                     throw Error(userResponse.message);
                 }
 
-                this.user = userResponse;
+                localStorage.clear();
 
-                localStorage.setItem(localStorageUserItem, JSON.stringify(userResponse));
-
-                this.isAuthorized = true;
+                this.updateUserData(userResponse);
 
                 router.push({ path: "/" });
             } catch (error) {
-                console.error("Login fail:\n" + error);
-                this.isAuthorized = false;
-
                 return error;
             }
         },
         logOut() {
             this.user = null;
-            this.isAuthorized = false;
 
-            localStorage.removeItem(localStorageUserItem);
+            this.updateUserData(null);
 
             router.push({ path: "/" });
+        },
+        isAuthorized() {
+            return Boolean(this.user?.user);
         },
         async isValidCredentials(credentials: Credentials) {
             try {
@@ -68,9 +55,32 @@ export const useAuthStore = defineStore({
                 return false;
             }
         },
-        updateUserData(userData: CustomerWithToken) {
-            this.user = userData;
-            localStorage.setItem(localStorageUserItem, JSON.stringify(userData));
+        updateUserData(userData: CustomerWithToken | null) {
+            if (userData === null) {
+                localStorage.clear();
+            } else {
+                this.user = userData;
+                localStorage.setItem(LOCALSTORAGE_NAME, JSON.stringify(userData));
+            }
+        },
+        async refreshToken(): Promise<void> {
+            if (this.user?.token) {
+                const isTokenExpired = Date.now() > Number(this.user?.token.expires_at);
+
+                if (!isTokenExpired) {
+                    return;
+                }
+
+                try {
+                    this.user.token = await getRefreshedToken(this.user.token.refresh_token);
+                } catch (error) {
+                    this.user = null;
+                }
+            } else {
+                this.user = null;
+            }
+
+            this.updateUserData(this.user);
         }
     }
 });

@@ -1,6 +1,15 @@
 <script lang="ts">
     import { mergeProps } from "vue";
-    import type { AddressType, Customer, CustomerWithToken, DateOfBirthFormat, FullCustomerAddress, FullCustomerAddressModel } from "@/types";
+
+    import type {
+        AddressType,
+        Customer,
+        CustomerWithToken,
+        DateOfBirthFormat,
+        FullCustomerAddress,
+        FullCustomerAddressModel
+    } from "@/types";
+
     import { COUNTRIES } from "@/constants";
     import { formatDateOfBirth } from "@/utils/formatDateOfBirth";
     import { ValidationRules } from "@/utils/validationRules";
@@ -283,8 +292,15 @@
                 const addressInfo = this.getAddressTypeAndIfDefault(item.id);
 
                 this.addressDetails.addressFormModel = { ...item, ...addressInfo } as FullCustomerAddressModel;
-
                 this.addressDetails.addressFormModelShadowCopy = { ...this.addressDetails.addressFormModel } as FullCustomerAddressModel;
+
+                if (!this.addressDetails.addressFormModel.firstName) {
+                    this.addressDetails.addressFormModel.firstName = this.authStore.user?.user?.firstName || "";
+                }
+
+                if (!this.addressDetails.addressFormModel.lastName) {
+                    this.addressDetails.addressFormModel.lastName = this.authStore.user?.user?.lastName || "";
+                }
 
                 this.addressDetails.dialogAddressNewOrUpdate = true;
             },
@@ -363,7 +379,7 @@
                     }
 
                     if (this.computedIsAddressBillingAndDeFaultDataChanged) {
-                        // TODO: Make builders out of this if
+                        // TODO: Make builders out of these ifs
                         // Shipping
                         if (this.addressDetails.addressFormModel.isShipping &&
                             this.addressDetails.addressFormModel.isShipping !== this.addressDetails.addressFormModelShadowCopy.isShipping
@@ -513,7 +529,8 @@
                     {
                         title: "Contact Name",
                         key: "contactName",
-                        value: (item: FullCustomerAddress) => `${ item.firstName } ${ item.lastName }`
+                        value: (item: FullCustomerAddress) =>
+                            `${ item.firstName || this.authStore.user?.user?.firstName } ${ item.lastName || this.authStore.user?.user?.lastName }`
                     },
                     {
                         title: "Country",
@@ -538,7 +555,7 @@
                         title: "Address",
                         key: "address",
                         value: (item: FullCustomerAddress) =>
-                            `${ item.streetName } ${ item.streetNumber }`
+                            `${ item.streetName } ${ item.streetNumber || "" }`
                     },
                     { title: "Postal Code", value: "postalCode" },
                     {
@@ -899,7 +916,7 @@
                                                     <fieldset class="mb-4">
                                                         <legend>Contact Name</legend>
                                                         <v-row>
-                                                            <v-col>
+                                                            <v-col cols="12" md="6">
                                                                 <v-text-field
                                                                     v-model="addressDetails.addressFormModel.firstName"
                                                                     :rules="[
@@ -913,7 +930,7 @@
                                                                 >
                                                                 </v-text-field>
                                                             </v-col>
-                                                            <v-col>
+                                                            <v-col cols="12" md="6">
                                                                 <v-text-field
                                                                     v-model="addressDetails.addressFormModel.lastName"
                                                                     :rules="[
@@ -931,7 +948,7 @@
                                                     </fieldset>
 
                                                     <v-row>
-                                                        <v-col>
+                                                        <v-col cols="12" md="4">
                                                             <v-select
                                                                 v-model="addressDetails.addressFormModel.country"
                                                                 :items="addressDetails.countries"
@@ -947,7 +964,7 @@
                                                             >
                                                             </v-select>
                                                         </v-col>
-                                                        <v-col>
+                                                        <v-col cols="12" md="4">
                                                             <v-text-field
                                                                 v-model="addressDetails.addressFormModel.state"
                                                                 density="compact"
@@ -957,7 +974,7 @@
                                                             >
                                                             </v-text-field>
                                                         </v-col>
-                                                        <v-col>
+                                                        <v-col cols="12" md="4">
                                                             <v-text-field
                                                                 v-model="addressDetails.addressFormModel.postalCode"
                                                                 :rules="[commonValidationRules.required, commonValidationRules.zipCodeContainsFiveDigits]"
@@ -972,7 +989,7 @@
                                                     </v-row>
 
                                                     <v-row>
-                                                        <v-col>
+                                                        <v-col cols="12" md="4">
                                                             <v-text-field
                                                                 v-model="addressDetails.addressFormModel.city"
                                                                 :rules="[
@@ -988,7 +1005,7 @@
                                                             >
                                                             </v-text-field>
                                                         </v-col>
-                                                        <v-col>
+                                                        <v-col cols="12" md="4">
                                                             <v-text-field
                                                                 v-model="addressDetails.addressFormModel.streetName"
                                                                 :rules="[
@@ -1003,7 +1020,7 @@
                                                             >
                                                             </v-text-field>
                                                         </v-col>
-                                                        <v-col>
+                                                        <v-col cols="12" md="4">
                                                             <v-text-field
                                                                 v-model="addressDetails.addressFormModel.streetNumber"
                                                                 density="compact"
@@ -1016,7 +1033,7 @@
                                                     </v-row>
 
                                                     <v-row>
-                                                        <v-col>
+                                                        <v-col cols="12" md="6">
                                                             <v-switch
                                                                 v-model="addressDetails.addressFormModel.isShipping"
                                                                 density="compact"
@@ -1025,7 +1042,7 @@
                                                                 @change="onShippingAddressChange"
                                                             ></v-switch>
                                                         </v-col>
-                                                        <v-col>
+                                                        <v-col cols="12" md="6">
                                                             <v-switch
                                                                 v-model="addressDetails.addressFormModel.isBilling"
                                                                 density="compact"
@@ -1037,7 +1054,7 @@
                                                     </v-row>
 
                                                     <v-row>
-                                                        <v-col>
+                                                        <v-col cols="12" md="6">
                                                             <v-switch
                                                                 v-model="addressDetails.addressFormModel.isShippingAddressDefault"
                                                                 density="compact"
@@ -1046,7 +1063,7 @@
                                                                 @change="onDefaultShippingAddressChange"
                                                             ></v-switch>
                                                         </v-col>
-                                                        <v-col>
+                                                        <v-col cols="12" md="6">
                                                             <v-switch
                                                                 v-model="addressDetails.addressFormModel.isBillingAddressDefault"
                                                                 density="compact"
@@ -1059,7 +1076,6 @@
 
                                                     <small class="text-caption text-medium-emphasis">*indicates required field</small>
                                                 </v-container>
-
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
